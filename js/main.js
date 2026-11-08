@@ -55,7 +55,7 @@ function renderCards() {
         ? `<a href="${href}" class="more"${external ? ' target="_blank" rel="noopener"' : ""}>${external ? UI[lang].watch : UI[lang].more}</a>`
         : "";
       return `
-      <article class="card ${i === 0 ? "card--feature" : ""} ${grid.dataset.cards === "partners" ? "card--partner" : ""} reveal">
+      <article class="card ${i === 0 && grid.dataset.cards !== "partners" ? "card--feature" : ""} ${grid.dataset.cards === "partners" ? "card--partner" : "reveal"}">
         ${media}
         <div class="card__body">
           <h4>${t}</h4>
@@ -162,6 +162,93 @@ function translateStatic() {
   document.title = en ? DICT[origTitle] || origTitle : origTitle;
 }
 
+// ---------- اسلایدشوی همکاری‌های نهادی ----------
+// کارت‌ها در یک ردیف؛ هر چند ثانیه یک کارت جلو می‌رود و بعد از آخری بی‌وقفه به اولی برمی‌گردد.
+const partnerSlider = (() => {
+  const box = $("partnerSlider");
+  if (!box) return { reset() {} };
+  const track = box.querySelector(".partner-track");
+  const dots = $("partnerDots");
+  const DELAY = 3500, GAP = 22;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let index = 0, count = 0, perView = 1, timer = null, paused = false;
+
+  const step = () => (track.querySelector(".card")?.offsetWidth || 0) + GAP;
+  const sign = () => (document.documentElement.dir === "rtl" ? 1 : -1);
+
+  function place(animate) {
+    track.style.transition = animate ? "" : "none";
+    track.style.transform = `translateX(${sign() * index * step()}px)`;
+    if (!animate) track.offsetHeight; // apply instantly before re-enabling transitions
+    track.style.transition = "";
+    dots?.querySelectorAll("button").forEach((d, i) => d.classList.toggle("active", i === index % count));
+  }
+
+  function go(to) {
+    index = to;
+    if (index < 0) {            // before the first card: jump to the clones at the end, then step back
+      index = count;
+      place(false);
+      index = count - 1;
+    }
+    place(true);
+  }
+
+  // after sliding onto the cloned cards, snap back to the real ones without animation
+  track.addEventListener("transitionend", () => {
+    if (index >= count) { index -= count; place(false); }
+  });
+
+  function start() {
+    stop();
+    if (!reduce && !paused && count > perView) timer = setInterval(() => go(index + 1), DELAY);
+  }
+  function stop() { clearInterval(timer); timer = null; }
+
+  function reset() {
+    // remove old clones, measure, then clone the first cards to the end for a seamless loop
+    track.querySelectorAll(".card.clone").forEach(c => c.remove());
+    const cards = [...track.querySelectorAll(".card")];
+    count = cards.length;
+    if (!count) return;
+    perView = Math.max(1, Math.round((box.clientWidth + GAP) / step()));
+    cards.slice(0, perView).forEach(c => {
+      const k = c.cloneNode(true);
+      k.classList.add("clone"); k.setAttribute("aria-hidden", "true");
+      k.querySelectorAll("a").forEach(a => a.tabIndex = -1);
+      track.appendChild(k);
+    });
+    if (dots) {
+      dots.innerHTML = cards.map((_, i) => `<button aria-label="${i + 1}"></button>`).join("");
+      dots.querySelectorAll("button").forEach((d, i) => d.onclick = () => { go(i); start(); });
+    }
+    index = Math.min(index % count, count - 1);
+    place(false);
+    start();
+  }
+
+  $("partnerNext")?.addEventListener("click", () => { go(index + 1); start(); });
+  $("partnerPrev")?.addEventListener("click", () => { go(index - 1); start(); });
+  box.addEventListener("mouseenter", () => { paused = true; stop(); });
+  box.addEventListener("mouseleave", () => { paused = false; start(); });
+  box.addEventListener("focusin", () => { paused = true; stop(); });
+  box.addEventListener("focusout", () => { paused = false; start(); });
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(reset, 200); });
+
+  // swipe on touch screens
+  let x0 = null;
+  box.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  box.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) go(index + (dx * sign() > 0 ? 1 : -1));
+    start();
+  });
+
+  return { reset };
+})();
+
 // ---------- تغییر زبان ----------
 function setLang(l) {
   lang = l;
@@ -178,11 +265,13 @@ function setLang(l) {
   document.querySelectorAll("[data-count]").forEach(el => {
     if (el.dataset.cur) el.textContent = fmt(+el.dataset.cur);
   });
-  if ($("prev")) {
-    // دکمه‌های اسلایدر: «بعدی» همیشه در جهت خواندن
-    $("prev").textContent = l === "fa" ? "›" : "‹";
-    $("next").textContent = l === "fa" ? "‹" : "›";
-  }
+  // دکمه‌های اسلایدرها: «بعدی» همیشه در جهت خواندن
+  [["prev", "next"], ["partnerPrev", "partnerNext"]].forEach(([p, n]) => {
+    if (!$(p)) return;
+    $(p).textContent = l === "fa" ? "›" : "‹";
+    $(n).textContent = l === "fa" ? "‹" : "›";
+  });
+  partnerSlider.reset();
   try { localStorage.setItem("lang", l); } catch (e) {}
   const url = new URL(location);
   l === "en" ? url.searchParams.set("lang", "en") : url.searchParams.delete("lang");

@@ -11,6 +11,7 @@ const DICT = {
   "پرش به محتوا": "Skip to content",
   "تلگرام": "Telegram", "لینکدین": "LinkedIn", "ایکس": "X", "اینستاگرام": "Instagram", "آپارات": "Aparat",
   "لوگو": "Logo", "بستن": "Close", "جستجو": "Search", "منو": "Menu",
+  "قبلی": "Previous", "بعدی": "Next",
 
   // هدر و منو
   "اندیشکده کیمیا": "Kimia Think Tank",

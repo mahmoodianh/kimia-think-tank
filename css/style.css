@@ -337,3 +337,16 @@ main section[id] { scroll-margin-top: 80px; }
 .card--partner h4 { color: #fff; }
 .card--partner p { color: #c3d2d5; }
 .card--partner.card--feature .card__body { padding-block: 22px 26px; }
+
+/* اسلایدشوی همکاری‌های نهادی: یک ردیف، حرکت خودکار */
+.partner-slider { overflow: hidden; padding: 6px 2px 14px; margin: -6px -2px 0; }
+.partner-track { display: flex; gap: 22px; transition: transform .7s cubic-bezier(.45,.05,.25,1); will-change: transform; }
+.partner-track .card { flex: 0 0 calc((100% - 44px) / 3); }
+.partner-track .card:hover { transform: none; }
+.card--partner .card__body { flex: 1 1 auto; }
+.partner-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.partner-dots button { width: 9px; height: 9px; border-radius: 50%; background: var(--line); transition: .3s; padding: 0; }
+.partner-dots button.active { width: 26px; border-radius: 6px; background: var(--accent); }
+@media (max-width: 1080px) { .partner-track .card { flex-basis: calc((100% - 22px) / 2); } }
+@media (max-width: 720px)  { .partner-track .card { flex-basis: 100%; } }
+@media (prefers-reduced-motion: reduce) { .partner-track { transition: none; } }
