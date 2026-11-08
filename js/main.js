@@ -47,6 +47,9 @@ function renderCards() {
                      allow="autoplay; fullscreen; picture-in-picture"></iframe>
              <span class="card__badge">▶ ${UI[lang].video}</span>
            </div>`
+        : grid.dataset.cards === "partners" && PARTNER_LOGOS[i]
+        ? `<div class="card__logos">${PARTNER_LOGOS[i].map(f =>
+             `<img src="images/partners/${f}" alt="${t}" loading="lazy">`).join("")}</div>`
         : `<img src="${img(i + gi * 3)}" alt="" loading="lazy">`;
       const link = href
         ? `<a href="${href}" class="more"${external ? ' target="_blank" rel="noopener"' : ""}>${external ? UI[lang].watch : UI[lang].more}</a>`

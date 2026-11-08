@@ -321,3 +321,13 @@ input { font: inherit; }
 
 /* هنگام رفتن به یک بخش با لینک، عنوان زیر هدر چسبان نرود */
 main section[id] { scroll-margin-top: 80px; }
+
+/* لوگوی نهادهای همکار به جای تصویر کارت */
+.card__logos { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; gap: 28px; padding: 22px 28px;
+  background: linear-gradient(180deg, #fff, var(--bg-alt)); border-bottom: 1px solid var(--line); }
+.card--feature .card__logos { aspect-ratio: 4/3; }
+.card__logos img { height: 58% !important; width: auto !important; max-width: 82%; aspect-ratio: auto !important; object-fit: contain;
+  min-width: 0; flex: 0 1 auto; transition: transform .3s; }
+.card--feature .card__logos img { height: 50% !important; }
+.card__logos img + img, .card__logos img:has(+ img) { height: 46% !important; max-width: 44%; }
+.card:hover .card__logos img { transform: scale(1.05); }
