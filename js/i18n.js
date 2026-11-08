@@ -124,8 +124,8 @@ const DICT = {
 
 // متن‌های کوچکی که در کد ساخته می‌شوند
 const UI = {
-  fa: { switchTo: "En Version", more: "اطلاعات بیشتر »", year: 1405 },
-  en: { switchTo: "نسخه فارسی", more: "More info »", year: 2026 }
+  fa: { switchTo: "En Version", more: "اطلاعات بیشتر »", watch: "مشاهده در آپارات »", video: "ویدئو", year: 1405 },
+  en: { switchTo: "نسخه فارسی", more: "More info »", watch: "Watch on Aparat »", video: "Video", year: 2026 }
 };
 
 // =====================================================================
@@ -136,11 +136,13 @@ const UI = {
 const DATA = {
   fa: {
     events: [
+      ["معرفی اندیشکده در بخش ویژه «اندیشکده نوپا» — دومین جایزه ملی سیاست‌گذاری",
+       "۱۹ مهر ۱۴۰۳ — خانم سمن فلاح سلطانی، مدیر اندیشکده (با نام پیشین «اندیشکده نحب»)، در بخش ویژه اندیشکده نوپا از دومین جایزه ملی سیاست‌گذاری به معرفی این مجموعه پرداخت. داوری این بخش بر عهده دکتر مصباح‌الهدی باقری کنی، دکتر سعید نریمان، دکتر کیومرث اشتریان و دکتر روح‌الله هنرور بود.",
+       "https://www.aparat.com/v/dwtf4m1", "dwtf4m1"],
       ["همایش تخصصی فارماکوویژیلانس", "همایشی برای کادر درمان با محوریت شناخت و گزارش‌دهی عوارض دارویی، در ادامه کوریکولوم آموزشی هسته کمبود گزارش عوارض.", "cores.html#adr-reporting"],
       ["پنل خبرگان دستورالعمل خدمات دارویی آفلاین", "نقد و نهایی‌سازی دستورالعمل ۹ ماده‌ای ارائه خدمات دارویی بدون اتصال اینترنت.", "cores.html#offline"],
       ["جلسات هم‌اندیشی تجربه‌نگاری", "گفت‌وگو درباره یافته‌های مصاحبه‌ها در حیطه‌های غذا، دارو، مکمل و تجهیزات پزشکی.", "cores.html#experience"],
-      ["نشست ارائه نتایج ارزیابی طرح دارویاری", "مرور شاخص‌های کلیدی طرح در بازه ۱۳۹۹ تا ۱۴۰۳.", "cores.html#darooyari"],
-      ["رونمایی از دموی سامانه محاسبه دیه", "معرفی قابلیت‌های نسخه نمایشی سامانه هوشمند محاسبه دیات مقدر.", "cores.html#diyat"]
+      ["نشست ارائه نتایج ارزیابی طرح دارویاری", "مرور شاخص‌های کلیدی طرح در بازه ۱۳۹۹ تا ۱۴۰۳.", "cores.html#darooyari"]
     ],
     pubs: [
       ["آسیب‌شناسی نظام فارماکوویژیلانس کشور", "احصای کلان‌ترین مشکلات نظام فارماکوویژیلانس و ارائه راهکارهای بهبود به سازمان غذا و دارو.", "cores.html#pv-system"],
@@ -176,11 +178,13 @@ const DATA = {
   },
   en: {
     events: [
+      ["Introducing the Think Tank at the “Emerging Think Tanks” Special Section — 2nd National Policymaking Award",
+       "10 October 2024 — Ms. Saman Fallah Soltani, director of the think tank (then known as Nahb Think Tank), introduced the group in the “Emerging Think Tanks” (Nopa) special section of the 2nd National Policymaking Award. The section was judged by Dr. Mesbah-ol-Hoda Bagheri Kani, Dr. Saeed Nariman, Dr. Kiumars Ashtarian and Dr. Rouhollah Honarvar.",
+       "https://www.aparat.com/v/dwtf4m1", "dwtf4m1"],
       ["Pharmacovigilance Conference", "A conference for healthcare professionals on recognising and reporting adverse drug reactions, building on the ADR core's training curriculum.", "cores.html#adr-reporting"],
       ["Expert Panel on Offline Pharmacy Services", "Reviewing and finalising the 9-article guideline for delivering pharmacy services without internet access.", "cores.html#offline"],
       ["Policy Documentation Workshops", "Discussing interview findings in food, medicines, supplements and medical devices.", "cores.html#experience"],
-      ["Darooyari Evaluation Results", "Presenting the programme's key indicators for 2020–2024.", "cores.html#darooyari"],
-      ["Diya Calculator Demo Launch", "Introducing the demo version of the smart statutory-diya calculation system.", "cores.html#diyat"]
+      ["Darooyari Evaluation Results", "Presenting the programme's key indicators for 2020–2024.", "cores.html#darooyari"]
     ],
     pubs: [
       ["Diagnosing Iran's Pharmacovigilance System", "The system's most significant problems, with improvement measures submitted to the Food and Drug Administration.", "cores.html#pv-system"],

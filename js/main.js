@@ -37,15 +37,30 @@ const slider = $("slider");
 function renderCards() {
   const D = DATA[lang];
   document.querySelectorAll("[data-cards]").forEach((grid, gi) => {
-    grid.innerHTML = D[grid.dataset.cards].map(([t, p, href], i) => `
+    grid.innerHTML = D[grid.dataset.cards].map(([t, p, href, video], i) => {
+      const external = href && /^https?:/.test(href);
+      // ویدئوی آپارات: پخش‌کننده داخل خود کارت
+      const media = video
+        ? `<div class="card__video">
+             <iframe src="https://www.aparat.com/video/video/embed/videohash/${video}/vt/frame"
+                     title="${t}" loading="lazy" allowfullscreen
+                     allow="autoplay; fullscreen; picture-in-picture"></iframe>
+             <span class="card__badge">▶ ${UI[lang].video}</span>
+           </div>`
+        : `<img src="${img(i + gi * 3)}" alt="" loading="lazy">`;
+      const link = href
+        ? `<a href="${href}" class="more"${external ? ' target="_blank" rel="noopener"' : ""}>${external ? UI[lang].watch : UI[lang].more}</a>`
+        : "";
+      return `
       <article class="card ${i === 0 ? "card--feature" : ""} reveal">
-        <img src="${img(i + gi * 3)}" alt="" loading="lazy">
+        ${media}
         <div class="card__body">
           <h4>${t}</h4>
           <p>${p}</p>
-          ${href ? `<a href="${href}" class="more">${UI[lang].more}</a>` : ""}
+          ${link}
         </div>
-      </article>`).join("");
+      </article>`;
+    }).join("");
     observe(grid);
   });
 
