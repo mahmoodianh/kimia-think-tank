@@ -322,12 +322,18 @@ input { font: inherit; }
 /* هنگام رفتن به یک بخش با لینک، عنوان زیر هدر چسبان نرود */
 main section[id] { scroll-margin-top: 80px; }
 
-/* لوگوی نهادهای همکار به جای تصویر کارت */
-.card__logos { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; gap: 28px; padding: 22px 28px;
-  background: linear-gradient(180deg, #fff, var(--bg-alt)); border-bottom: 1px solid var(--line); }
-.card--feature .card__logos { aspect-ratio: 4/3; }
-.card__logos img { height: 58% !important; width: auto !important; max-width: 82%; aspect-ratio: auto !important; object-fit: contain;
-  min-width: 0; flex: 0 1 auto; transition: transform .3s; }
-.card--feature .card__logos img { height: 50% !important; }
-.card__logos img + img, .card__logos img:has(+ img) { height: 46% !important; max-width: 44%; }
+/* لوگوی نهادهای همکار به جای تصویر کارت — همه لوگوها در یک قاب هم‌اندازه */
+.card__logos { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 20px;
+  background: #fff; }
+.card--feature .card__logos { aspect-ratio: auto; flex: 1; min-height: 220px; }
+.card__logos img { width: 140px !important; height: 110px !important; max-width: 46%; aspect-ratio: auto !important;
+  object-fit: contain; flex: 0 1 140px; transition: transform .3s; }
+.card__logos img:only-child { max-width: 80%; }
 .card:hover .card__logos img { transform: scale(1.05); }
+
+/* کادر نام نهاد در رنگ‌های سایت */
+.card--partner { border: 1px solid var(--line); }
+.card--partner .card__body { background: var(--navy); border-top: 4px solid var(--accent); flex: 0 0 auto; }
+.card--partner h4 { color: #fff; }
+.card--partner p { color: #c3d2d5; }
+.card--partner.card--feature .card__body { padding-block: 22px 26px; }

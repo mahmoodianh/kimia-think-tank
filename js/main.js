@@ -55,7 +55,7 @@ function renderCards() {
         ? `<a href="${href}" class="more"${external ? ' target="_blank" rel="noopener"' : ""}>${external ? UI[lang].watch : UI[lang].more}</a>`
         : "";
       return `
-      <article class="card ${i === 0 ? "card--feature" : ""} reveal">
+      <article class="card ${i === 0 ? "card--feature" : ""} ${grid.dataset.cards === "partners" ? "card--partner" : ""} reveal">
         ${media}
         <div class="card__body">
           <h4>${t}</h4>
