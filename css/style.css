@@ -278,7 +278,7 @@ input { font: inherit; }
   .member h4 { font-size: 14px; }
 }
 
-/* ================= معرفی، تاریخچه، رویکرد ================= */
+/* ================= معرفی و رویکرد ================= */
 .hero__btns { display: flex; gap: 12px; flex-wrap: wrap; }
 .btn--ghost { border: 2px solid rgba(255,255,255,.5); color: #fff; padding: 10px 26px; }
 .btn--ghost:hover { background: #fff; color: var(--navy); }
@@ -292,12 +292,6 @@ input { font: inherit; }
 .chips li { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
 .chips--light li { background: var(--bg-alt); border-color: var(--line); color: var(--navy); }
 
-.timeline { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; counter-reset: tl; position: relative; }
-.timeline::before { content: ""; position: absolute; top: 19px; inset-inline: 20px; height: 3px; background: linear-gradient(90deg, var(--accent), var(--navy-2)); border-radius: 3px; }
-.timeline li { position: relative; padding-top: 56px; counter-increment: tl; }
-.timeline li::before { content: counter(tl); position: absolute; top: 0; inset-inline-start: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: var(--accent-2); display: grid; place-items: center; font-weight: 800; border: 3px solid var(--bg-alt); }
-.timeline h4 { color: var(--navy); margin-bottom: 4px; }
-.timeline p { color: var(--muted); font-size: 14.5px; }
 
 .lead { color: #3a4556; max-width: 780px; margin-bottom: 26px; }
 .cycle { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: st; }
@@ -312,15 +306,12 @@ input { font: inherit; }
 
 @media (max-width: 900px) {
   .about__in { grid-template-columns: 1fr; }
-  .timeline { grid-template-columns: 1fr 1fr; row-gap: 30px; }
-  .timeline::before { display: none; }
   .cycle { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 520px) {
-  .timeline, .cycle { grid-template-columns: 1fr; }
+  .cycle { grid-template-columns: 1fr; }
 }
 /* اعداد شمارنده‌ها: فارسی در نسخه فارسی */
-[dir="rtl"] .timeline li::before { content: counter(tl, persian); }
 [dir="rtl"] .step::before { content: counter(st, persian); }
 
 /* ویدئوی آپارات داخل کارت رویداد */

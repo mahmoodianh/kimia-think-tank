@@ -35,7 +35,6 @@ const DICT = {
   "اینفوگرافیک": "Infographics",
   "درباره ما": "About Us",
   "معرفی": "Introduction",
-  "تاریخچه": "History",
   "رویکرد و روش کار": "Our Approach",
   "اعضای هسته‌ها": "Core Members",
   "ارتباط با ما": "Contact Us",
@@ -60,21 +59,6 @@ const DICT = {
   "حکمرانی و تنظیم‌گری نظام دارویی": "Governance & regulation of the pharmaceutical system",
   "سلامت دیجیتال و تاب‌آوری خدمات دارویی در بحران": "Digital health & resilience of pharmacy services in crises",
   "تجربه‌نگاری سیاست‌های حوزه سلامت": "Documenting health policy experience",
-
-  // تاریخچه
-  "تاریخچه و روند شکل‌گیری": "History & Formation",
-  "همه‌گیری کووید-۱۹": "The COVID-19 pandemic",
-  "گروهی از دانش‌آموختگان علوم پزشکی با نام «اندیشکده نحب» فعالیت خود را با ورود به مسائل دارویی دوران همه‌گیری و تجربه‌نگاری وقایع آن آغاز کردند.":
-    "A group of medical-science graduates, then known as \"Nahb Think Tank\", began working on the pharmaceutical issues of the pandemic and documenting its events.",
-  "شناسایی خلأها": "Identifying gaps",
-  "اعضا کوشیدند خلأهای نمایان‌شده نظام دارویی کشور در آن بحران را شناسایی کرده و با رویکرد مسئله‌محور به آن‌ها ورود کنند.":
-    "Members set out to identify the gaps the crisis exposed in the national pharmaceutical system and to tackle them with a problem-driven approach.",
-  "۱۴۰۱ — نخستین پروژه نظام‌مند": "2022 — First systematic project",
-  "مشاهده عوارض جانبی واکسن‌های کووید-۱۹ نقطه آغاز نخستین پروژه نظام‌مند اندیشکده در حوزه فارماکوویژیلانس شد.":
-    "Adverse effects observed after COVID-19 vaccines triggered the think tank's first systematic project, in pharmacovigilance.",
-  "هویت تازه: اندیشکده کیمیا": "A new identity: Kimia",
-  "با گسترش موضوعات و شکل‌گیری هسته‌های جدید، مجموعه با هویت تازه «اندیشکده کیمیا» مسیر خود را ادامه داد.":
-    "As its topics broadened and new cores formed, the group continued under its new identity, Kimia Think Tank.",
 
   // رویکرد
   "الگوی کاری اندیشکده کیمیا بر حل مسئله استوار است؛ هر هسته پس از انتخاب مسئله این چرخه را تا اثرگذاری بر تصمیم‌گیران دنبال می‌کند.":
