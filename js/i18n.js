@@ -7,6 +7,7 @@
 const DICT = {
   "اندیشکده کیمیا | مطالعات دارویی": "Kimia Think Tank | Pharmaceutical Studies",
   "هسته‌های پژوهشی | اندیشکده کیمیا": "Research Cores | Kimia Think Tank",
+  "درباره اندیشکده | اندیشکده کیمیا": "About | Kimia Think Tank",
   "پرش به محتوا": "Skip to content",
   "تلگرام": "Telegram", "لینکدین": "LinkedIn", "ایکس": "X", "اینستاگرام": "Instagram", "آپارات": "Aparat",
   "لوگو": "Logo", "بستن": "Close", "جستجو": "Search", "منو": "Menu",
