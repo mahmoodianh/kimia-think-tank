@@ -1,9 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6cc5bf"/><stop offset="1" stop-color="#2a9d97"/></linearGradient></defs>
-<circle cx="250" cy="210" r="175" fill="#fff" fill-opacity=".06"/><circle cx="250" cy="210" r="130" fill="none" stroke="#fff" stroke-opacity=".2" stroke-dasharray="6 8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6cc5bf"/><stop offset="1" stop-color="#2a9d97"/></linearGradient>
+  <!-- inside of the flask body: liquid and its bubbles stay within it -->
+  <clipPath id="flask"><path d="M232 168h36l62 122a20 20 0 0 1-18 30H188a20 20 0 0 1-18-30z"/></clipPath>
+  <style>
+    .spin   { animation: spin 40s linear infinite; transform-origin: 250px 210px; }
+    .wave1  { animation: wave 3s linear infinite; }
+    .wave2  { animation: wave2 4.5s linear infinite; }
+    .b      { animation: rise 2.6s ease-in infinite; opacity: 0; }
+    .n      { animation: neck 3.2s ease-out infinite; opacity: 0; }
+    .mol    { animation: mol 14s linear infinite; transform-origin: 380px 115px; }
+    .float  { animation: float 6s ease-in-out infinite; }
+    .atom   { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .cap1   { animation: cap1 5s ease-in-out infinite; transform-origin: 100px 140px; }
+    .cap2   { animation: cap2 6s ease-in-out infinite; transform-origin: 410px 300px; }
+    @keyframes spin  { to { transform: rotate(360deg); } }
+    @keyframes wave  { from { transform: translateX(0); } to { transform: translateX(-60px); } }
+    @keyframes wave2 { from { transform: translateX(-60px); } to { transform: translateX(0); } }
+    @keyframes rise  {
+      0%   { transform: translateY(0); opacity: 0; }
+      10%  { opacity: .85; }
+      85%  { opacity: .85; }
+      100% { transform: translateY(-72px); opacity: 0; }
+    }
+    @keyframes neck  {
+      0%   { transform: translate(0, 0) scale(.6); opacity: 0; }
+      15%  { opacity: .8; }
+      50%  { transform: translate(4px, -80px) scale(1); }
+      85%  { opacity: .7; }
+      100% { transform: translate(-3px, -165px) scale(1.25); opacity: 0; }
+    }
+    @keyframes mol   {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(-6px, 8px) rotate(90deg); }
+      50%  { transform: translate(0, 14px) rotate(180deg); }
+      75%  { transform: translate(6px, 6px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+    @keyframes cap1  { 0%,100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(8deg) translateY(-8px); } }
+    @keyframes cap2  { 0%,100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(-10deg) translateY(6px); } }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      .b, .n { opacity: .7; }
+    }
+  </style>
+</defs>
+
+<!-- background rings -->
+<circle cx="250" cy="210" r="175" fill="#fff" fill-opacity=".06"/>
+<circle class="spin" cx="250" cy="210" r="130" fill="none" stroke="#fff" stroke-opacity=".2" stroke-dasharray="6 8"/>
+
+<!-- liquid with moving surface + bubbles, clipped to the flask -->
+<g clip-path="url(#flask)">
+  <g class="wave2"><path d="M60 236q15-6 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0V330H60z" fill="#6cc5bf" fill-opacity=".45"/></g>
+  <g class="wave1"><path d="M60 241q15-8 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0V330H60z" fill="url(#g)"/></g>
+  <g fill="#fff">
+    <circle class="b" cx="222" cy="312" r="6"   style="animation-delay:0s"/>
+    <circle class="b" cx="262" cy="314" r="4"   style="animation-delay:.5s;animation-duration:2.1s"/>
+    <circle class="b" cx="244" cy="316" r="7"   style="animation-delay:1.1s;animation-duration:3s"/>
+    <circle class="b" cx="285" cy="312" r="5"   style="animation-delay:1.6s"/>
+    <circle class="b" cx="205" cy="314" r="3.5" style="animation-delay:.8s;animation-duration:2.3s"/>
+    <circle class="b" cx="300" cy="314" r="3"   style="animation-delay:2s;animation-duration:2.2s"/>
+    <circle class="b" cx="255" cy="314" r="3"   style="animation-delay:1.9s;animation-duration:1.9s"/>
+  </g>
+</g>
+
+<!-- bubbles escaping through the neck -->
+<g fill="#fff">
+  <circle class="n" cx="246" cy="238" r="5"   style="animation-delay:.3s"/>
+  <circle class="n" cx="254" cy="238" r="3.5" style="animation-delay:1.4s;animation-duration:2.8s"/>
+  <circle class="n" cx="250" cy="238" r="4"   style="animation-delay:2.4s;animation-duration:3.6s"/>
+</g>
+
+<!-- flask outline (drawn over the liquid) -->
 <path d="M220 90h60M232 90v80l-62 120a20 20 0 0 0 18 30h124a20 20 0 0 0 18-30l-62-120V90" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M196 240h108l34 62a10 10 0 0 1-9 15H171a10 10 0 0 1-9-15z" fill="url(#g)"/>
-<circle cx="230" cy="280" r="8" fill="#fff" fill-opacity=".7"/><circle cx="265" cy="295" r="5" fill="#fff" fill-opacity=".7"/><circle cx="255" cy="262" r="4" fill="#fff" fill-opacity=".7"/>
-<g stroke="#fff" stroke-width="3" fill="none" stroke-opacity=".8"><line x1="380" y1="110" x2="420" y2="90"/><line x1="380" y1="110" x2="395" y2="155"/><line x1="380" y1="110" x2="340" y2="95"/></g>
-<g fill="#2a9d97"><circle cx="380" cy="110" r="12"/><circle cx="420" cy="90" r="8"/><circle cx="395" cy="155" r="8"/><circle cx="340" cy="95" r="8"/></g>
-<g transform="rotate(-35 100 140)"><rect x="60" y="125" width="80" height="30" rx="15" fill="#fff" fill-opacity=".9"/><path d="M100 125h25a15 15 0 0 1 0 30h-25z" fill="#2a9d97"/></g>
-<g transform="rotate(25 410 300)"><rect x="380" y="290" width="60" height="22" rx="11" fill="#fff" fill-opacity=".9"/><path d="M410 290h19a11 11 0 0 1 0 22h-19z" fill="#2a9d97"/></g></svg>
+
+<!-- molecule: rotates and drifts -->
+<g class="float"><g class="mol">
+  <g stroke="#fff" stroke-width="3" fill="none" stroke-opacity=".8"><line x1="380" y1="110" x2="420" y2="90"/><line x1="380" y1="110" x2="395" y2="155"/><line x1="380" y1="110" x2="340" y2="95"/></g>
+  <g fill="#2a9d97">
+    <circle class="atom" cx="380" cy="110" r="12"/>
+    <circle class="atom" cx="420" cy="90"  r="8" style="animation-delay:.4s"/>
+    <circle class="atom" cx="395" cy="155" r="8" style="animation-delay:.8s"/>
+    <circle class="atom" cx="340" cy="95"  r="8" style="animation-delay:1.2s"/>
+  </g>
+</g></g>
+
+<!-- capsules -->
+<g class="cap1"><g transform="rotate(-35 100 140)"><rect x="60" y="125" width="80" height="30" rx="15" fill="#fff" fill-opacity=".9"/><path d="M100 125h25a15 15 0 0 1 0 30h-25z" fill="#2a9d97"/></g></g>
+<g class="cap2"><g transform="rotate(25 410 300)"><rect x="380" y="290" width="60" height="22" rx="11" fill="#fff" fill-opacity=".9"/><path d="M410 290h19a11 11 0 0 1 0 22h-19z" fill="#2a9d97"/></g></g>
+</svg>
