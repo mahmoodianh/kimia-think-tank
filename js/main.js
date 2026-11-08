@@ -229,16 +229,6 @@ document.addEventListener("keydown", e => {
   }
 });
 
-// ---------- فرم خبرنامه ----------
-document.querySelectorAll(".nl-form").forEach(f =>
-  f.addEventListener("submit", e => {
-    e.preventDefault();
-    f.reset();
-    const msg = f.parentElement.querySelector(".nl-msg");
-    if (msg) { msg.hidden = false; setTimeout(() => (msg.hidden = true), 4000); }
-  })
-);
-
 // ---------- هدر چسبان ----------
 const header = $("header");
 addEventListener("scroll", () => header.classList.toggle("scrolled", scrollY > 20));

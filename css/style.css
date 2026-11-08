@@ -111,14 +111,6 @@ input { font: inherit; }
 @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(27,122,122,.6)} 70%{box-shadow:0 0 0 14px rgba(27,122,122,0)} 100%{box-shadow:0 0 0 0 rgba(27,122,122,0)} }
 .promo__img { border-radius: 18px; }
 
-/* newsletter */
-.newsletter { padding-block: 40px; }
-.newsletter__in { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; background: var(--navy); color: #fff; padding: 26px 30px; border-radius: 20px; }
-.newsletter h3 { font-size: 20px; }
-.nl-form { display: flex; gap: 10px; flex: 1; flex-wrap: wrap; }
-.nl-form input { flex: 1; min-width: 160px; padding: 11px 16px; border-radius: 999px; border: 1px solid var(--line); outline: none; }
-.nl-form input:focus { border-color: var(--accent); }
-.nl-msg { width: 100%; color: var(--accent-2); }
 
 /* sections */
 .section { padding-block: 70px; }
@@ -187,7 +179,6 @@ input { font: inherit; }
 .footer h4 { color: #fff; margin-bottom: 14px; }
 .footer li { margin-bottom: 6px; font-size: 14px; }
 .footer a:hover { color: var(--accent); }
-.nl-form--mini { margin-top: 12px; }
 .copy { text-align: center; border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; padding: 18px; font-size: 13px; }
 
 /* modal */

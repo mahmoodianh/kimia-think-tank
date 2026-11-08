@@ -95,13 +95,6 @@ const DICT = {
   "بارش فکری": "Brainstorming",
   "پنل خبرگان": "Expert panels",
 
-  // خبرنامه
-  "عضویت در خبرنامه": "Subscribe to Our Newsletter",
-  "نام و نام خانوادگی": "Full name",
-  "شماره موبایل": "Mobile number",
-  "ایمیل": "Email",
-  "عضویت": "Subscribe",
-  "عضویت شما با موفقیت ثبت شد.": "You have successfully subscribed.",
 
   // بخش‌ها
   "مشاهده بیشتر": "View more",
@@ -120,11 +113,8 @@ const DICT = {
   "Kimia Pharmaceutical Think Tank (KPTT)": "اندیشکده مطالعات دارویی کیمیا",
 
   // فوتر
-  "برای دریافت تازه‌ترین گزارش‌ها و تحلیل‌های حوزه دارو در خبرنامه کیمیا عضو شوید.":
-    "Subscribe to the Kimia newsletter for our latest pharmaceutical reports and analyses.",
-  "ایمیل شما": "Your email",
-  "ارسال": "Send",
-  "ثبت شد، ممنون!": "Subscribed, thank you!",
+  "اندیشکده کیمیا؛ مجموعه‌ای مسئله‌محور برای حل چالش‌های حوزه دارو و فرآورده‌های سلامت.":
+    "Kimia Think Tank: a problem-driven group tackling challenges in medicines and health products.",
   "لینک‌های مهم": "Useful Links",
   "بانک اطلاعات دارویی": "Drug Database",
   "تماس با ما": "Get in Touch",
