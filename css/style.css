@@ -377,3 +377,15 @@ main section[id] { scroll-margin-top: 80px; }
 .contact a { direction: ltr; }
 @media (max-width: 1080px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__grid > div:first-child { grid-column: 1 / -1; } }
 @media (max-width: 720px)  { .footer__grid { grid-template-columns: 1fr; } }
+
+/* رفع مشکل منوی موبایل:
+   پرده تیره باید زیر هدر (و منوی داخل آن) باشد تا لمس گزینه‌ها به خود لینک برسد؛
+   و در موبایل هدر نباید backdrop-filter داشته باشد، چون منوی ثابت را نسبت به هدر جای‌گذاری می‌کند نه صفحه. */
+.overlay { z-index: 40; }
+@media (max-width: 1080px) {
+  .header { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
+  .nav { height: 100dvh; }
+}
+body.nav-open { overflow: hidden; }
+/* فلش زیرمنو در موبایل: هدف لمسی بزرگ‌تر */
+@media (max-width: 1080px) { .chev { padding: 8px 16px; top: 2px; } }

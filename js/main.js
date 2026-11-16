@@ -132,15 +132,6 @@ function renderCores() {
             <ul>${c.list.map(f => `<li>${f}</li>`).join("")}</ul>
           </div>
         </div>
-        <h3 class="core__team-title">${U.team}</h3>
-        <div class="team">
-          ${c.members.map((m, i) => `
-            <div class="member reveal">
-              <img src="images/team/${c.id}-${i + 1}.${PHOTO_EXT}" alt="${m}" loading="lazy">
-              <h4>${m}</h4>
-              <span>${ROLES[lang][i]}</span>
-            </div>`).join("")}
-        </div>
       </div>
     </section>`).join("");
   observe(list);
@@ -322,6 +313,7 @@ const overlay = $("overlay");
 const toggleNav = open => {
   nav.classList.toggle("open", open);
   overlay.classList.toggle("show", open);
+  document.body.classList.toggle("nav-open", open); // جلوگیری از اسکرول صفحه پشت منو
 };
 $("navOpen").onclick = () => toggleNav(true);
 $("navClose").onclick = () => toggleNav(false);

@@ -115,6 +115,8 @@ const DICT = {
   "سازمان پزشکی قانونی": "Legal Medicine Organization",
   "سازمان بیمه سلامت ایران": "Iran Health Insurance Organization",
   "سازمان تأمین اجتماعی": "Social Security Organization",
+  "تلفن:": "Phone:",
+  "۰۲۱-۰۰۰۰۰۰۰۰": "+98 21 0000 0000",
   "پست الکترونیک:": "Email:",
   "آدرس:": "Address:",
   "تهران، چهارراه ولیعصر، خیابان برادران مظفر، کوچه بخشنده، پلاک ۵": "No. 5, Bakhshandeh Alley, Baradaran-e Mozaffar St., Vali-e Asr Intersection, Tehran, Iran",
@@ -232,32 +234,20 @@ const PARTNER_LOGOS = [
 
 // =====================================================================
 //  هسته‌های پژوهشی (صفحه cores.html) — بر اساس سند معرفی اندیشکده
-//  نام اعضا و عکس‌ها نمونه هستند؛ با اطلاعات واقعی جایگزین کنید.
-//  عکس هر عضو: images/team/<id>-<شماره>.svg
-//  (برای عکس واقعی، فایل jpg را با همان نام بگذارید و PHOTO_EXT را "jpg" کنید)
 // =====================================================================
-const PHOTO_EXT = "svg";
-
 const CORES_UI = {
   fa: {
     pageTitle: "هسته‌های پژوهشی",
     pageIntro: "فعالیت‌های اندیشکده کیمیا در قالب هسته‌های پژوهشی سازمان‌دهی می‌شود؛ هر هسته حول یک مسئله مشخص و اولویت‌دار شکل می‌گیرد و چرخه کامل ریشه‌یابی، شناسایی موانع، طراحی راهکار و پیگیری پیاده‌سازی را تا اثرگذاری بر تصمیم‌گیران دنبال می‌کند.",
-    team: "اعضای هسته",
     all: "همه هسته‌ها",
     site: "اندیشکده کیمیا"
   },
   en: {
     pageTitle: "Research Cores",
     pageIntro: "Kimia's work is organised into research cores. Each core forms around a specific, high-priority problem and follows the full cycle of root-cause analysis, identifying barriers, designing solutions and following up on implementation until decision-makers are influenced.",
-    team: "Core Members",
     all: "All Cores",
     site: "Kimia Think Tank"
   }
-};
-
-const ROLES = {
-  fa: ["مسئول هسته", "پژوهشگر ارشد", "پژوهشگر", "پژوهشگر همکار"],
-  en: ["Head of Core", "Senior Researcher", "Researcher", "Associate Researcher"]
 };
 
 const CORES = {
@@ -277,8 +267,7 @@ const CORES = {
         "کمبود نیروی متخصص در سازمان و معاونت‌های غذا و دارو",
         "اختلالات فنی سامانه‌های ثبت و پردازش گزارش‌ها",
         "فقدان رویه‌ها و دستورالعمل‌های مدون"
-      ],
-      members: ["دکتر مریم احمدی", "دکتر علی رضایی", "دکتر نگار حسینی", "دکتر رضا کریمی"]
+      ]
     },
     {
       id: "adr-reporting", icon: "g2",
@@ -294,8 +283,7 @@ const CORES = {
         "تدوین کوریکولوم آموزشی و برگزاری همایش تخصصی",
         "پیگیری رفع مشکلات فنی سامانه‌های گزارش‌دهی",
         "مداخلات رسانه‌ای: انتخاب رسانه هدف و تولید محتوای آموزشی برای مردم و سیاست‌گذاران"
-      ],
-      members: ["دکتر سارا موسوی", "دکتر حمید جعفری", "دکتر الهام صادقی", "دکتر مهدی نوری"]
+      ]
     },
     {
       id: "diyat", icon: "g3",
@@ -311,8 +299,7 @@ const CORES = {
         "نمایش قدر متیقن دیه برای تسریع پرداخت به بیمار",
         "اعمال خودکار شروط قانونی",
         "تجمیع نهایی دیات آسیب‌های مختلف"
-      ],
-      members: ["دکتر زهرا کاظمی", "دکتر امیر شریفی", "دکتر فاطمه رحیمی", "دکتر محسن قاسمی"]
+      ]
     },
     {
       id: "darooyari", icon: "g4",
@@ -329,8 +316,7 @@ const CORES = {
         "بهبود وضعیت کمبودهای دارویی؛ کاهش کمبودهای کوتاه‌مدت و میان‌مدت و حرکت اقلام دارای کمبود مزمن به سمت پایداری بیشتر",
         "افزایش سهم تولید داخل در سبد تأمین دارویی همزمان با رشد صادرات دارویی",
         "عدم تغییر معنادار در پرداخت از جیب بیماران بر اساس مطالعات و داده‌های بیمه‌ای"
-      ],
-      members: ["دکتر لیلا مرادی", "دکتر کاوه اکبری", "دکتر نرگس طاهری", "دکتر بهروز یوسفی"]
+      ]
     },
     {
       id: "experience", icon: "g5",
@@ -340,8 +326,7 @@ const CORES = {
         "در فاز دوم، مصاحبه‌ها به حیطه‌های تخصصی گسترش یافته و یافته‌های هر حیطه در هسته مربوطه بررسی تکمیلی می‌شود. خروجی این فرآیند، ثبت نظام‌مند تجربه سیاست‌گذاری حوزه فرآورده‌های سلامت برای بهره‌برداری سیاست‌گذاران آینده خواهد بود."
       ],
       listTitle: "حیطه‌های مصاحبه در فاز دوم",
-      list: ["غذا", "دارو", "مکمل", "تجهیزات پزشکی", "فناوری اطلاعات"],
-      members: ["دکتر مینا عباسی", "دکتر سعید نجفی", "دکتر پریسا رستمی", "دکتر حسین فرهادی"]
+      list: ["غذا", "دارو", "مکمل", "تجهیزات پزشکی", "فناوری اطلاعات"]
     },
     {
       id: "offline", icon: "g6",
@@ -355,8 +340,7 @@ const CORES = {
         "نسخه‌نویسی امن توسط پزشک",
         "تحویل و ثبت دارو در داروخانه",
         "تسویه‌حساب بیمه‌ای پس از بازگشت ارتباط"
-      ],
-      members: ["دکتر شیما کریمیان", "دکتر پویا منصوری", "دکتر آزاده بهرامی", "دکتر مجید سلطانی"]
+      ]
     },
     {
       id: "shortage", icon: "g7",
@@ -370,8 +354,7 @@ const CORES = {
         "اولویت پایین بازار ایران برای شرکت تولیدکننده اصلی (نوونوردیسک) به دلیل تمرکز بر محصولات پرسودتر جهانی",
         "انحصار چندجانبه در تأمین انسولین‌های قلمی",
         "وابستگی بالای کشور به واردات"
-      ],
-      members: ["دکتر نازنین عزیزی", "دکتر فرهاد امیری", "دکتر سمیرا جلالی", "دکتر کامران حیدری"]
+      ]
     }
   ],
   en: [
@@ -390,8 +373,7 @@ const CORES = {
         "Shortage of specialists at the FDA and university food & drug departments",
         "Technical faults in report registration and processing systems",
         "No formal procedures or written guidelines"
-      ],
-      members: ["Dr. Maryam Ahmadi", "Dr. Ali Rezaei", "Dr. Negar Hosseini", "Dr. Reza Karimi"]
+      ]
     },
     {
       id: "adr-reporting", icon: "g2",
@@ -407,8 +389,7 @@ const CORES = {
         "A training curriculum and a specialist conference",
         "Following up fixes to the reporting systems' technical problems",
         "Media interventions: choosing target media and producing educational content for the public and policymakers"
-      ],
-      members: ["Dr. Sara Mousavi", "Dr. Hamid Jafari", "Dr. Elham Sadeghi", "Dr. Mahdi Nouri"]
+      ]
     },
     {
       id: "diyat", icon: "g3",
@@ -424,8 +405,7 @@ const CORES = {
         "Showing the certain minimum diya to speed up payment to the patient",
         "Automatic application of legal conditions",
         "Final aggregation of diya across multiple injuries"
-      ],
-      members: ["Dr. Zahra Kazemi", "Dr. Amir Sharifi", "Dr. Fatemeh Rahimi", "Dr. Mohsen Ghasemi"]
+      ]
     },
     {
       id: "darooyari", icon: "g4",
@@ -442,8 +422,7 @@ const CORES = {
         "Fewer drug shortages: short- and medium-term shortages fell, and chronically short items moved toward more stable supply",
         "A larger share of local production in national drug supply, alongside growing exports",
         "No significant change in patients' out-of-pocket payments, according to studies and insurance data"
-      ],
-      members: ["Dr. Leila Moradi", "Dr. Kaveh Akbari", "Dr. Narges Taheri", "Dr. Behrouz Yousefi"]
+      ]
     },
     {
       id: "experience", icon: "g5",
@@ -453,8 +432,7 @@ const CORES = {
         "In the second phase, interviews are expanding into specialist areas, with each area's findings reviewed further in the relevant core. The output will be a systematic record of health-products policymaking experience for future policymakers."
       ],
       listTitle: "Second-phase interview areas",
-      list: ["Food", "Medicines", "Supplements", "Medical devices", "Information technology"],
-      members: ["Dr. Mina Abbasi", "Dr. Saeed Najafi", "Dr. Parisa Rostami", "Dr. Hossein Farhadi"]
+      list: ["Food", "Medicines", "Supplements", "Medical devices", "Information technology"]
     },
     {
       id: "offline", icon: "g6",
@@ -468,8 +446,7 @@ const CORES = {
         "Secure prescribing by the physician",
         "Dispensing and recording medicines at the pharmacy",
         "Insurance settlement once the connection returns"
-      ],
-      members: ["Dr. Shima Karimian", "Dr. Pouya Mansouri", "Dr. Azadeh Bahrami", "Dr. Majid Soltani"]
+      ]
     },
     {
       id: "shortage", icon: "g7",
@@ -483,8 +460,7 @@ const CORES = {
         "Low priority of the Iranian market for the original manufacturer (Novo Nordisk), which focuses on more profitable global products",
         "Oligopoly in the supply of insulin pens",
         "High dependence on imports"
-      ],
-      members: ["Dr. Nazanin Azizi", "Dr. Farhad Amiri", "Dr. Samira Jalali", "Dr. Kamran Heydari"]
+      ]
     }
   ]
 };
