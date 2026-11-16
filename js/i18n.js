@@ -25,6 +25,11 @@ const DICT = {
   "تداوم خدمات دارویی در ناپایداری اینترنت": "Pharmacy Continuity During Internet Outages",
   "بررسی علل کمبود دارویی": "Root Causes of Drug Shortages",
   "آرشیو مطالب": "Archive",
+  "محورها": "Research Areas",
+  "دستاوردها": "Achievements",
+  "انتشارات": "Publications",
+  "تازه‌ها": "What's New",
+  "مشاهده همه": "View all",
   "رویدادها": "Events",
   "پروژه‌ها": "Projects",
   "پروژه‌های جاری": "Ongoing Projects",
@@ -104,6 +109,15 @@ const DICT = {
   "لینک‌های مهم": "Useful Links",
   "بانک اطلاعات دارویی": "Drug Database",
   "تماس با ما": "Get in Touch",
+  "سازمان غذا و دارو": "Food and Drug Administration",
+  "وزارت بهداشت، درمان و آموزش پزشکی": "Ministry of Health and Medical Education",
+  "قوه قضاییه": "Judiciary",
+  "سازمان پزشکی قانونی": "Legal Medicine Organization",
+  "سازمان بیمه سلامت ایران": "Iran Health Insurance Organization",
+  "سازمان تأمین اجتماعی": "Social Security Organization",
+  "پست الکترونیک:": "Email:",
+  "آدرس:": "Address:",
+  "تهران، چهارراه ولیعصر، خیابان برادران مظفر، کوچه بخشنده، پلاک ۵": "No. 5, Bakhshandeh Alley, Baradaran-e Mozaffar St., Vali-e Asr Intersection, Tehran, Iran",
   "تهران، خیابان نمونه، پلاک ۱": "No. 1, Sample St., Tehran, Iran",
   "تمامی حقوق محفوظ است.": "All rights reserved."
 };
@@ -228,12 +242,16 @@ const CORES_UI = {
   fa: {
     pageTitle: "هسته‌های پژوهشی",
     pageIntro: "فعالیت‌های اندیشکده کیمیا در قالب هسته‌های پژوهشی سازمان‌دهی می‌شود؛ هر هسته حول یک مسئله مشخص و اولویت‌دار شکل می‌گیرد و چرخه کامل ریشه‌یابی، شناسایی موانع، طراحی راهکار و پیگیری پیاده‌سازی را تا اثرگذاری بر تصمیم‌گیران دنبال می‌کند.",
-    team: "اعضای هسته"
+    team: "اعضای هسته",
+    all: "همه هسته‌ها",
+    site: "اندیشکده کیمیا"
   },
   en: {
     pageTitle: "Research Cores",
     pageIntro: "Kimia's work is organised into research cores. Each core forms around a specific, high-priority problem and follows the full cycle of root-cause analysis, identifying barriers, designing solutions and following up on implementation until decision-makers are influenced.",
-    team: "Core Members"
+    team: "Core Members",
+    all: "All Cores",
+    site: "Kimia Think Tank"
   }
 };
 

@@ -87,16 +87,35 @@ function renderCards() {
 }
 
 // ---------- صفحه هسته‌های پژوهشی ----------
+// ---------- صفحه اصلی: «محورها» (آیکون هر هسته، با لینک به صفحه همان هسته) ----------
+function renderAxes() {
+  const grid = $("axesGrid");
+  if (!grid) return;
+  grid.innerHTML = CORES[lang].map(c => `
+    <a class="axis reveal" href="cores.html?c=${c.id}">
+      <span class="axis__icon"><img src="images/${c.icon}.svg" alt=""></span>
+      <span class="axis__title">${c.title}</span>
+    </a>`).join("");
+  observe(grid);
+}
+
 function renderCores() {
   const list = $("coresList");
   if (!list) return;
   const U = CORES_UI[lang];
+  // cores.html?c=<id> فقط همان هسته را نشان می‌دهد؛ بدون پارامتر، همه هسته‌ها
+  const only = new URLSearchParams(location.search).get("c");
+  const one = CORES[lang].find(c => c.id === only);
+  const shown = one ? [one] : CORES[lang];
   $("coresTitle").textContent = U.pageTitle;
   $("coresIntro").textContent = U.pageIntro;
-  $("coreTabs").innerHTML = CORES[lang].map(c =>
-    `<a href="#${c.id}"><img src="images/${c.icon}.svg" alt="">${c.title}</a>`).join("");
+  $("coreTabs").innerHTML =
+    `<a href="cores.html" class="${one ? "" : "active"}">${U.all}</a>` +
+    CORES[lang].map(c =>
+      `<a href="cores.html?c=${c.id}" class="${one && one.id === c.id ? "active" : ""}"><img src="images/${c.icon}.svg" alt="">${c.title}</a>`).join("");
+  if (one) document.title = `${one.title} | ${U.site}`;
 
-  list.innerHTML = CORES[lang].map((c, ci) => `
+  list.innerHTML = shown.map((c, ci) => `
     <section class="core ${ci % 2 ? "section--alt" : ""}" id="${c.id}">
       <div class="container">
         <div class="core__head reveal">
@@ -138,7 +157,7 @@ const SKIP = new Set(["SCRIPT", "STYLE"]);
 const textNodes = [];
 const attrNodes = [];
 (function collect() {
-  const dynamic = "[data-cards], #opinions, #slider, #coresList, #coreTabs";
+  const dynamic = "[data-cards], #opinions, #slider, #coresList, #coreTabs, #axesGrid";
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const n = walker.currentNode;
@@ -260,6 +279,7 @@ function setLang(l) {
   translateStatic();
   renderCards();
   renderCores();
+  renderAxes();
   $("langToggle").textContent = UI[l].switchTo;
   $("year").textContent = fmt(UI[l].year);
   document.querySelectorAll("[data-count]").forEach(el => {

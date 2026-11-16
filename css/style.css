@@ -350,3 +350,30 @@ main section[id] { scroll-margin-top: 80px; }
 @media (max-width: 1080px) { .partner-track .card { flex-basis: calc((100% - 22px) / 2); } }
 @media (max-width: 720px)  { .partner-track .card { flex-basis: 100%; } }
 @media (prefers-reduced-motion: reduce) { .partner-track { transition: none; } }
+
+/* ================= محورها (صفحه اصلی) ================= */
+.axes-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.axis { flex: 0 1 calc((100% - 60px) / 4); min-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 14px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 18px 22px;
+  box-shadow: var(--shadow); transition: transform .3s, border-color .3s, box-shadow .3s; }
+.axis:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 14px 34px rgba(27,122,122,.18); }
+.axis__icon { width: 78px; height: 78px; border-radius: 22px; display: grid; place-items: center; background: var(--bg-alt);
+  transition: background .3s; }
+.axis__icon img { width: 52px; height: 52px; border-radius: 12px; }
+.axis:hover .axis__icon { background: rgba(27,122,122,.12); }
+.axis__title { color: var(--navy); font-weight: 700; font-size: 15px; line-height: 1.7; }
+@media (max-width: 1080px) { .axis { flex-basis: calc((100% - 40px) / 3); } }
+@media (max-width: 720px)  { .axis { flex-basis: calc((100% - 20px) / 2); min-width: 0; padding: 20px 12px 18px; }
+  .axis__icon { width: 64px; height: 64px; } .axis__icon img { width: 42px; height: 42px; } .axis__title { font-size: 13.5px; } }
+
+/* صفحه هسته‌ها: تب فعال */
+.core-tabs a.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.core-tabs a:not(:has(img)) { padding-inline: 16px; }
+
+/* ================= فوتر: سه ستون ================= */
+.footer__grid { grid-template-columns: 1.4fr 1fr 1.3fr; }
+.contact li { display: flex; gap: 6px; flex-wrap: wrap; line-height: 1.9; }
+.contact__label { color: var(--accent-2); font-weight: 600; }
+.contact a { direction: ltr; }
+@media (max-width: 1080px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__grid > div:first-child { grid-column: 1 / -1; } }
+@media (max-width: 720px)  { .footer__grid { grid-template-columns: 1fr; } }
