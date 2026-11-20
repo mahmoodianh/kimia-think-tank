@@ -434,3 +434,8 @@ body.nav-open { overflow: hidden; }
   .pub-dialog h3 { font-size: 18px; }
   .pub-dialog__close { background: rgba(255,255,255,.9); }
 }
+
+/* انتشارات: تعداد ستون‌ها خودکار بر اساس عرض (دسکتاپ ۵، تبلت ۳، موبایل ۲) */
+.pub-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 24px; }
+@media (max-width: 1080px) { .pub-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); } }
+@media (max-width: 560px)  { .pub-grid { grid-template-columns: repeat(2, 1fr); gap: 18px 14px; } }

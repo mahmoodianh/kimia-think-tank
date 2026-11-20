@@ -215,6 +215,15 @@ const PUB_UI = {
 const PUBLICATIONS = {
   fa: [
     {
+      id: "offline-pharmacy", cover: "cover-5.jpg",
+      title: "دستورالعمل تداوم ارائه خدمات دارویی در داروخانه‌های شهری در صورت ناپایداری شبکه اینترنتی در شرایط بحران",
+      paras: [
+        "با گذار پرشتاب نظام سلامت ایران به سمت ارائۀ خدمات الکترونیک و رسیدن به نرخ وابستگی ۹۸ درصدی در صدور نسخۀ الکترونیک، معماری خدمات دارویی با شکنندگی عمیقی در برابر اختلالات زیرساختی روبه‌رو شده است. شواهد میدانی نشان می‌دهد که در زمان بروز بحران‌ها و قطعی اینترنت، این وابستگی مطلق به شبکه‌های برخط می‌تواند استمرار درمان را با مخاطرۀ جدی مواجه کرده و به سرگردانی بیماران و کادر درمان بینجامد. با وجود حساسیت حیاتی این موضوع و پیامدهای اجتماعی ناشی از آن، خلأ یک دستورالعمل جامع و عملیاتی برای تداوم خدمات دارویی در شرایط اضطرار کاملاً محسوس و آسیب‌زا است.",
+        "پژوهش حاضر با درک این ضرورت راهبردی و با هدف تدوین یک الگوی از پیش تعیین‌شده برای مدیریت بحران در سطح داروخانه‌های شهری شکل گرفته است. در این مسیر پس از شناسایی سناریوهای بحرانی و ترسیم وضعیت موجود، تلاش شد تا با بهره‌گیری از مطالعات تطبیقی بین‌المللی راهکارهای جایگزین و موفق جهانی واکاوی شود. در ادامه برای بومی‌سازی این الگوها و شناخت دقیق چالش‌های میدانی، مصاحبه‌های نیمه‌ساختاریافته‌ای با ذی‌نفعان کلیدی و نهادهای سیاست‌گذار انجام گرفت. تحلیل مضمون این داده‌های کیفی به‌خوبی نشان داد که نقاط ضعف فرایندهای جاری کجاست و چگونه گسیختگی نهادی می‌تواند بار تاب‌آوری سیستم را به‌طور ناعادلانه بر دوش داروخانه‌ها بیندازد.",
+        "خروجی نهایی و دستاورد این واکاوی همه‌جانبه، تدوین یک <b>دستورالعمل پدافندی نه‌ماده‌ای</b> است که به‌عنوان راهکاری فوری و عملیاتی، تمامی حلقه‌های زنجیرۀ خدمات دارویی را از لحظۀ ثبت دستی نسخه تا تحویل دارو در شرایط قطعی شبکۀ اینترنت مدیریت می‌کند. افزون بر این راهکار کوتاه‌مدت، سند حاضر در نگاهی آینده‌نگرانه دستورالعمل مکمل دیگری را مبتنی بر فناوری‌های تنظیم‌گر و زیرساخت رمزنگاری نامتقارن پیشنهاد می‌دهد. عملیاتی شدن این معماری نوین در بلندمدت می‌تواند امکان احراز هویت، ارائۀ خدمات و تسویۀ قطعی بیمه‌ای را بدون نیاز به هیچ‌گونه ارتباط برخط فراهم ساخته و تاب‌آوری نظام دارویی کشور را در تاریکی‌های دیجیتال به‌طور کامل تضمین کند."
+      ]
+    },
+    {
       id: "diyat-database", cover: "cover-1.jpg",
       title: "پایگاه داده هوشمندسازی محاسبه دیات مقدر",
       paras: [
@@ -257,6 +266,15 @@ const PUBLICATIONS = {
     }
   ],
   en: [
+    {
+      id: "offline-pharmacy", cover: "cover-5.jpg",
+      title: "Guideline for Continuity of Pharmacy Services in Urban Pharmacies During Internet Instability in Crises",
+      paras: [
+        "As Iran's health system has moved rapidly towards electronic services, reaching 98% reliance on e-prescriptions, the architecture of pharmacy services has become deeply fragile in the face of infrastructure disruptions. Field evidence shows that during crises and internet outages, this total dependence on online networks can seriously threaten continuity of treatment and leave patients and healthcare staff stranded. Despite the vital sensitivity of this issue and its social consequences, the lack of a comprehensive, operational guideline for continuing pharmacy services in emergencies is clearly felt and harmful.",
+        "This study was formed in recognition of that strategic need, with the aim of developing a predefined model for crisis management in urban pharmacies. After identifying crisis scenarios and mapping the current situation, successful alternative approaches from around the world were examined through international comparative studies. To localise these models and understand the challenges on the ground, semi-structured interviews were then held with key stakeholders and policymaking bodies. Thematic analysis of this qualitative data showed clearly where current processes are weak, and how institutional fragmentation can unfairly place the burden of system resilience on pharmacies.",
+        "The final output of this comprehensive analysis is a <b>nine-article defensive guideline</b> that, as an immediate and practical solution, manages every link in the pharmacy service chain — from manually recording a prescription to dispensing the medicine — when the internet is down. Beyond this short-term solution, the document takes a forward-looking view and proposes a complementary guideline based on regulatory technologies and asymmetric-cryptography infrastructure. In the long term, putting this new architecture into practice could enable authentication, service delivery and final insurance settlement without any online connection, fully securing the resilience of the national pharmaceutical system during digital blackouts."
+      ]
+    },
     {
       id: "diyat-database", cover: "cover-1.jpg",
       title: "A Database for Smart Calculation of Statutory Diya",
