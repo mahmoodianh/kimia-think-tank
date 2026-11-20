@@ -7,6 +7,7 @@
 const DICT = {
   "اندیشکده کیمیا | مطالعات دارویی": "Kimia Think Tank | Pharmaceutical Studies",
   "هسته‌های پژوهشی | اندیشکده کیمیا": "Research Cores | Kimia Think Tank",
+  "گزارش | اندیشکده کیمیا": "Report | Kimia Think Tank",
   "درباره اندیشکده | اندیشکده کیمیا": "About | Kimia Think Tank",
   "پرش به محتوا": "Skip to content",
   "تلگرام": "Telegram", "لینکدین": "LinkedIn", "ایکس": "X", "اینستاگرام": "Instagram", "آپارات": "Aparat",
@@ -208,14 +209,16 @@ const DATA = {
 //  برای افزودن گزارش جدید، یک مورد دیگر به هر دو زبان اضافه کنید.
 // =====================================================================
 const PUB_UI = {
-  fa: { kind: "گزارش پژوهشی", read: "مطالعه خلاصه گزارش", summary: "خلاصه و مقدمه گزارش", close: "بستن", notes: "پانویس" },
-  en: { kind: "Research Report", read: "Read the summary", summary: "Summary & Introduction", close: "Close", notes: "Notes" }
+  fa: { kind: "گزارش پژوهشی", read: "مطالعه خلاصه گزارش", summary: "خلاصه و مقدمه گزارش", close: "بستن", notes: "پانویس",
+        page: "صفحه گزارش", axis: "محور مرتبط", back: "بازگشت به انتشارات", missing: "گزارش مورد نظر پیدا نشد." },
+  en: { kind: "Research Report", read: "Read the summary", summary: "Summary & Introduction", close: "Close", notes: "Notes",
+        page: "Report page", axis: "Research area", back: "Back to Publications", missing: "Report not found." }
 };
 
 const PUBLICATIONS = {
   fa: [
     {
-      id: "offline-pharmacy", cover: "cover-5.jpg",
+      id: "offline-pharmacy", cover: "cover-5.jpg", core: "offline",
       title: "دستورالعمل تداوم ارائه خدمات دارویی در داروخانه‌های شهری در صورت ناپایداری شبکه اینترنتی در شرایط بحران",
       paras: [
         "با گذار پرشتاب نظام سلامت ایران به سمت ارائۀ خدمات الکترونیک و رسیدن به نرخ وابستگی ۹۸ درصدی در صدور نسخۀ الکترونیک، معماری خدمات دارویی با شکنندگی عمیقی در برابر اختلالات زیرساختی روبه‌رو شده است. شواهد میدانی نشان می‌دهد که در زمان بروز بحران‌ها و قطعی اینترنت، این وابستگی مطلق به شبکه‌های برخط می‌تواند استمرار درمان را با مخاطرۀ جدی مواجه کرده و به سرگردانی بیماران و کادر درمان بینجامد. با وجود حساسیت حیاتی این موضوع و پیامدهای اجتماعی ناشی از آن، خلأ یک دستورالعمل جامع و عملیاتی برای تداوم خدمات دارویی در شرایط اضطرار کاملاً محسوس و آسیب‌زا است.",
@@ -224,7 +227,7 @@ const PUBLICATIONS = {
       ]
     },
     {
-      id: "diyat-database", cover: "cover-1.jpg",
+      id: "diyat-database", cover: "cover-1.jpg", core: "diyat",
       title: "پایگاه داده هوشمندسازی محاسبه دیات مقدر",
       paras: [
         "نظام حقوقی در ایران بر مبنای فقه اسلامی بنا شده و توسعه یافته است. این نظام، شامل بخش‌های متعددی بوده که یکی از این بخش‌ها، قانون مجازات اسلامی است. قانون مجازات اسلامی مشتمل بر جرایم و مجازات‌های حدود، قصاص، دیات و تعزیرات، اقدامات تأمینی و تربیتی، شرایط و موانع مسؤولیت کیفری و قواعد حاکم بر آن‌ها است. کتاب چهارم قانون مجازات مرتبط با موضوع دیات است و شامل مجموعه‌ای کامل از قواعدی است که برای آسیب‌های مختلف، دیات متناسبی را تعیین کرده است. دیات تعیین شده در قانون، بر دو نوع هستند. دیات مقدر و غیرمقدر (ارش):",
@@ -267,7 +270,7 @@ const PUBLICATIONS = {
   ],
   en: [
     {
-      id: "offline-pharmacy", cover: "cover-5.jpg",
+      id: "offline-pharmacy", cover: "cover-5.jpg", core: "offline",
       title: "Guideline for Continuity of Pharmacy Services in Urban Pharmacies During Internet Instability in Crises",
       paras: [
         "As Iran's health system has moved rapidly towards electronic services, reaching 98% reliance on e-prescriptions, the architecture of pharmacy services has become deeply fragile in the face of infrastructure disruptions. Field evidence shows that during crises and internet outages, this total dependence on online networks can seriously threaten continuity of treatment and leave patients and healthcare staff stranded. Despite the vital sensitivity of this issue and its social consequences, the lack of a comprehensive, operational guideline for continuing pharmacy services in emergencies is clearly felt and harmful.",
@@ -276,7 +279,7 @@ const PUBLICATIONS = {
       ]
     },
     {
-      id: "diyat-database", cover: "cover-1.jpg",
+      id: "diyat-database", cover: "cover-1.jpg", core: "diyat",
       title: "A Database for Smart Calculation of Statutory Diya",
       paras: [
         "Iran's legal system is built on and developed from Islamic jurisprudence. One of its many parts is the Islamic Penal Code, which covers hudud, qisas, diya and ta'zir offences and punishments, security and corrective measures, the conditions for and barriers to criminal liability, and the rules governing them. Book Four of the Penal Code concerns diya (statutory compensation for bodily harm) and sets out a complete body of rules assigning appropriate compensation to different injuries. Diya under the law is of two kinds: statutory (muqaddar) and non-statutory (arsh):",
@@ -337,12 +340,14 @@ const CORES_UI = {
     pageTitle: "هسته‌های پژوهشی",
     pageIntro: "فعالیت‌های اندیشکده کیمیا در قالب هسته‌های پژوهشی سازمان‌دهی می‌شود؛ هر هسته حول یک مسئله مشخص و اولویت‌دار شکل می‌گیرد و چرخه کامل ریشه‌یابی، شناسایی موانع، طراحی راهکار و پیگیری پیاده‌سازی را تا اثرگذاری بر تصمیم‌گیران دنبال می‌کند.",
     all: "همه هسته‌ها",
+    pubs: "گزارش‌های این محور",
     site: "اندیشکده کیمیا"
   },
   en: {
     pageTitle: "Research Cores",
     pageIntro: "Kimia's work is organised into research cores. Each core forms around a specific, high-priority problem and follows the full cycle of root-cause analysis, identifying barriers, designing solutions and following up on implementation until decision-makers are influenced.",
     all: "All Cores",
+    pubs: "Reports in this area",
     site: "Kimia Think Tank"
   }
 };

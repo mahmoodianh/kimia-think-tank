@@ -439,3 +439,48 @@ body.nav-open { overflow: hidden; }
 .pub-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 24px; }
 @media (max-width: 1080px) { .pub-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); } }
 @media (max-width: 560px)  { .pub-grid { grid-template-columns: repeat(2, 1fr); gap: 18px 14px; } }
+
+/* انتشارات به شکل اسلایدشو: دسکتاپ ۴، تبلت ۳، موبایل ۲ کاور در هر نما */
+.pub-slider { overflow: hidden; padding: 14px 4px 26px; margin: -14px -4px -10px; }
+.pub-track { display: flex; gap: 24px; transition: transform .7s cubic-bezier(.45,.05,.25,1); will-change: transform; }
+.pub-track .pub { flex: 0 0 calc((100% - 72px) / 4); min-width: 0; }
+@media (max-width: 1080px) { .pub-track .pub { flex-basis: calc((100% - 48px) / 3); } }
+@media (max-width: 720px)  { .pub-track { gap: 14px; } .pub-track .pub { flex-basis: calc((100% - 14px) / 2); } }
+@media (prefers-reduced-motion: reduce) { .pub-track { transition: none; } }
+
+/* ================= صفحه هر گزارش (pub.html) ================= */
+.back-link { display: inline-block; color: var(--accent-2); font-weight: 600; font-size: 14px; margin-bottom: 14px; }
+.back-link:hover { color: #fff; }
+.page-hero__kind { display: block; color: var(--accent-2); font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.page-hero h1#pubPageTitle { font-size: clamp(22px, 3vw, 34px); line-height: 1.6; max-width: 980px; }
+.pub-page { display: grid; grid-template-columns: 320px 1fr; gap: 44px; align-items: start; }
+.pub-page__side { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 18px; }
+.pub-page__cover { width: 100%; border-radius: 10px; box-shadow: 0 18px 40px rgba(38,50,56,.25); }
+.pub-page__axis { display: flex; align-items: center; gap: 12px; background: var(--bg-alt); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 12px 14px; transition: .25s; }
+.pub-page__axis:hover { border-color: var(--accent); background: #fff; }
+.pub-page__axis img { width: 42px; height: 42px; border-radius: 10px; flex: none; }
+.pub-page__axis span { color: var(--navy); font-weight: 700; font-size: 14px; line-height: 1.7; }
+.pub-page__axis small { display: block; color: var(--accent); font-size: 12px; }
+.pub-page__text h2 { color: var(--navy); font-size: 19px; display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.pub-page__text h2::before { content: ""; width: 5px; height: 22px; border-radius: 3px; background: var(--accent); }
+.pub-page__text p { color: #3a4556; text-align: justify; line-height: 2.1; font-size: 15.5px; margin-bottom: 16px; }
+.pub-page__text b { color: var(--navy); }
+.pub-page__text sup { color: var(--accent); font-weight: 700; }
+@media (max-width: 860px) {
+  .pub-page { grid-template-columns: 1fr; gap: 26px; }
+  .pub-page__side { position: static; flex-direction: row; align-items: center; }
+  .pub-page__cover { width: 130px; flex: none; }
+}
+
+/* ================= گزارش‌های هر محور (صفحه هسته‌ها) ================= */
+.core__pubs { margin-top: 30px; }
+.core__pubs h3 { color: var(--navy); font-size: 18px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.core__pubs h3::before { content: ""; width: 5px; height: 20px; border-radius: 3px; background: var(--accent); }
+.core__pubs ul { list-style: none; display: grid; gap: 14px; }
+.core__pubs a { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 14px; box-shadow: var(--shadow); transition: .25s; }
+.core__pubs a:hover { border-color: var(--accent); transform: translateY(-3px); }
+.core__pubs img { width: 62px; border-radius: 6px; flex: none; box-shadow: 0 6px 14px rgba(38,50,56,.2); }
+.core__pubs span { color: var(--navy); font-weight: 700; font-size: 15.5px; line-height: 1.8; }
+.core__pubs small { display: block; color: var(--accent); font-size: 12.5px; font-weight: 600; }

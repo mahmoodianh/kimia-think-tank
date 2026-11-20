@@ -87,17 +87,21 @@ function renderPubs() {
   if (!grid) return;
   const U = PUB_UI[lang];
   grid.innerHTML = PUBLICATIONS[lang].map(p => `
-    <a class="pub reveal" href="#pub-${p.id}" data-pub="${p.id}">
+    <a class="pub" href="#pub-${p.id}" data-pub="${p.id}">
       <span class="pub__cover"><img src="images/publications/${p.cover}?v=${COVER_V}" alt="${p.title}" loading="lazy"></span>
       <span class="pub__kind">${U.kind}</span>
       <span class="pub__title">${p.title}</span>
       <span class="pub__read">${U.read} »</span>
     </a>`).join("");
-  grid.querySelectorAll("[data-pub]").forEach(a => a.addEventListener("click", e => {
-    e.preventDefault();
-    openPub(a.dataset.pub);
-  }));
-  observe(grid);
+  if (!grid.dataset.bound) {
+    grid.dataset.bound = "1";
+    grid.addEventListener("click", e => {
+      const a = e.target.closest("[data-pub]");
+      if (!a) return;
+      e.preventDefault();
+      openPub(a.dataset.pub);
+    });
+  }
   // اگر پنجره‌ای باز است (مثلاً هنگام تغییر زبان)، متنش را به‌روز کن
   const dlg = $("pubDialog");
   if (dlg?.open && dlg.dataset.pub) fillPub(dlg.dataset.pub);
@@ -152,6 +156,53 @@ function renderAxes() {
   observe(grid);
 }
 
+// گزارش‌های مرتبط با یک محور (در صفحه همان محور)
+function corePubs(coreId) {
+  const rel = PUBLICATIONS[lang].filter(p => p.core === coreId);
+  if (!rel.length) return "";
+  return `
+        <div class="core__pubs reveal">
+          <h3>${CORES_UI[lang].pubs}</h3>
+          <ul>${rel.map(p => `
+            <li><a href="pub.html?p=${p.id}">
+              <img src="images/publications/${p.cover}?v=${COVER_V}" alt="" loading="lazy">
+              <span><small>${PUB_UI[lang].kind}</small>${p.title}</span>
+            </a></li>`).join("")}
+          </ul>
+        </div>`;
+}
+
+// ---------- صفحه هر گزارش: pub.html?p=<id> ----------
+function renderPubPage() {
+  const box = $("pubPage");
+  if (!box) return;
+  const U = PUB_UI[lang];
+  const id = new URLSearchParams(location.search).get("p");
+  const p = PUBLICATIONS[lang].find(x => x.id === id);
+  $("pubBack").textContent = "« " + U.back;
+  if (!p) {
+    $("pubPageTitle").textContent = U.missing;
+    $("pubPageKind").textContent = "";
+    box.innerHTML = "";
+    return;
+  }
+  document.title = `${p.title} | ${CORES_UI[lang].site}`;
+  $("pubPageKind").textContent = U.kind;
+  $("pubPageTitle").textContent = p.title;
+  const core = p.core && CORES[lang].find(c => c.id === p.core);
+  box.innerHTML = `
+    <aside class="pub-page__side">
+      <img class="pub-page__cover" src="images/publications/${p.cover}?v=${COVER_V}" alt="${p.title}">
+      ${core ? `<a class="pub-page__axis" href="cores.html?c=${core.id}">
+        <img src="images/${core.icon}.svg" alt=""><span><small>${U.axis}</small>${core.title}</span></a>` : ""}
+    </aside>
+    <article class="pub-page__text">
+      <h2>${U.summary}</h2>
+      ${p.paras.map(t => `<p>${t}</p>`).join("")}
+      ${p.notes ? `<div class="pub-notes"><b>${U.notes}</b><ol>${p.notes.map(n => `<li>${n}</li>`).join("")}</ol></div>` : ""}
+    </article>`;
+}
+
 function renderCores() {
   const list = $("coresList");
   if (!list) return;
@@ -185,6 +236,7 @@ function renderCores() {
             <ul>${c.list.map(f => `<li>${f}</li>`).join("")}</ul>
           </div>
         </div>
+        ${corePubs(c.id)}
       </div>
     </section>`).join("");
   observe(list);
@@ -207,7 +259,7 @@ const SKIP = new Set(["SCRIPT", "STYLE"]);
 const textNodes = [];
 const attrNodes = [];
 (function collect() {
-  const dynamic = "[data-cards], #pubGrid, #pubDialog, #slider, #coresList, #coreTabs, #axesGrid";
+  const dynamic = "[data-cards], #pubGrid, #pubDialog, #slider, #coresList, #coreTabs, #axesGrid, #pubPage, #pubPageTitle, #pubPageKind, #pubBack";
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const n = walker.currentNode;
@@ -231,18 +283,17 @@ function translateStatic() {
   document.title = en ? DICT[origTitle] || origTitle : origTitle;
 }
 
-// ---------- اسلایدشوی همکاری‌های نهادی ----------
+// ---------- اسلایدشوی خودکار (همکاری‌های نهادی و انتشارات) ----------
 // کارت‌ها در یک ردیف؛ هر چند ثانیه یک کارت جلو می‌رود و بعد از آخری بی‌وقفه به اولی برمی‌گردد.
-const partnerSlider = (() => {
-  const box = $("partnerSlider");
+function createAutoSlider({ box, dots, prev, next, item, delay = 3500 }) {
+  box = $(box); dots = $(dots);
   if (!box) return { reset() {} };
-  const track = box.querySelector(".partner-track");
-  const dots = $("partnerDots");
-  const DELAY = 3500, GAP = 22;
+  const track = box.firstElementChild;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let index = 0, count = 0, perView = 1, timer = null, paused = false;
 
-  const step = () => (track.querySelector(".card")?.offsetWidth || 0) + GAP;
+  const gap = () => parseFloat(getComputedStyle(track).columnGap) || 0;
+  const step = () => (track.querySelector(item)?.offsetWidth || 0) + gap();
   const sign = () => (document.documentElement.dir === "rtl" ? 1 : -1);
 
   function place(animate) {
@@ -264,40 +315,40 @@ const partnerSlider = (() => {
   }
 
   // after sliding onto the cloned cards, snap back to the real ones without animation
-  track.addEventListener("transitionend", () => {
-    if (index >= count) { index -= count; place(false); }
+  track.addEventListener("transitionend", e => {
+    if (e.target === track && index >= count) { index -= count; place(false); }
   });
 
   function start() {
     stop();
-    if (!reduce && !paused && count > perView) timer = setInterval(() => go(index + 1), DELAY);
+    if (!reduce && !paused && count > perView) timer = setInterval(() => go(index + 1), delay);
   }
   function stop() { clearInterval(timer); timer = null; }
 
   function reset() {
     // remove old clones, measure, then clone the first cards to the end for a seamless loop
-    track.querySelectorAll(".card.clone").forEach(c => c.remove());
-    const cards = [...track.querySelectorAll(".card")];
+    track.querySelectorAll(".clone").forEach(c => c.remove());
+    const cards = [...track.querySelectorAll(item)];
     count = cards.length;
     if (!count) return;
-    perView = Math.max(1, Math.round((box.clientWidth + GAP) / step()));
-    cards.slice(0, perView).forEach(c => {
+    perView = Math.max(1, Math.round((box.clientWidth + gap()) / step()));
+    if (count > perView) cards.slice(0, perView).forEach(c => {
       const k = c.cloneNode(true);
       k.classList.add("clone"); k.setAttribute("aria-hidden", "true");
-      k.querySelectorAll("a").forEach(a => a.tabIndex = -1);
+      (k.matches("a") ? [k] : []).concat([...k.querySelectorAll("a")]).forEach(a => a.tabIndex = -1);
       track.appendChild(k);
     });
     if (dots) {
-      dots.innerHTML = cards.map((_, i) => `<button aria-label="${i + 1}"></button>`).join("");
+      dots.innerHTML = count > perView ? cards.map((_, i) => `<button aria-label="${i + 1}"></button>`).join("") : "";
       dots.querySelectorAll("button").forEach((d, i) => d.onclick = () => { go(i); start(); });
     }
-    index = Math.min(index % count, count - 1);
+    index = count > perView ? Math.min(index % count, count - 1) : 0;
     place(false);
     start();
   }
 
-  $("partnerNext")?.addEventListener("click", () => { go(index + 1); start(); });
-  $("partnerPrev")?.addEventListener("click", () => { go(index - 1); start(); });
+  $(next)?.addEventListener("click", () => { go(index + 1); start(); });
+  $(prev)?.addEventListener("click", () => { go(index - 1); start(); });
   box.addEventListener("mouseenter", () => { paused = true; stop(); });
   box.addEventListener("mouseleave", () => { paused = false; start(); });
   box.addEventListener("focusin", () => { paused = true; stop(); });
@@ -316,7 +367,10 @@ const partnerSlider = (() => {
   });
 
   return { reset };
-})();
+}
+
+const partnerSlider = createAutoSlider({ box: "partnerSlider", dots: "partnerDots", prev: "partnerPrev", next: "partnerNext", item: ".card" });
+const pubSlider = createAutoSlider({ box: "pubSlider", dots: "pubDots", prev: "pubPrev", next: "pubNext", item: ".pub", delay: 4000 });
 
 // ---------- تغییر زبان ----------
 function setLang(l) {
@@ -330,18 +384,20 @@ function setLang(l) {
   renderCards();
   renderCores();
   renderAxes();
+  renderPubPage();
   $("langToggle").textContent = UI[l].switchTo;
   $("year").textContent = fmt(UI[l].year);
   document.querySelectorAll("[data-count]").forEach(el => {
     if (el.dataset.cur) el.textContent = fmt(+el.dataset.cur);
   });
   // دکمه‌های اسلایدرها: «بعدی» همیشه در جهت خواندن
-  [["prev", "next"], ["partnerPrev", "partnerNext"]].forEach(([p, n]) => {
+  [["prev", "next"], ["partnerPrev", "partnerNext"], ["pubPrev", "pubNext"]].forEach(([p, n]) => {
     if (!$(p)) return;
     $(p).textContent = l === "fa" ? "›" : "‹";
     $(n).textContent = l === "fa" ? "‹" : "›";
   });
   partnerSlider.reset();
+  pubSlider.reset();
   try { localStorage.setItem("lang", l); } catch (e) {}
   const url = new URL(location);
   l === "en" ? url.searchParams.set("lang", "en") : url.searchParams.delete("lang");

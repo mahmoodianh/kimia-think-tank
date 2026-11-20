@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#263238">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>گزارش | اندیشکده کیمیا</title>
+  <script>
+    // تنظیم جهت صفحه پیش از نمایش، تا هنگام بارگذاری نسخه انگلیسی صفحه نپرد
+    (function () {
+      var l = new URLSearchParams(location.search).get("lang");
+      if (!l) { try { l = localStorage.getItem("lang"); } catch (e) {} }
+      if (l === "en") { document.documentElement.lang = "en"; document.documentElement.dir = "ltr"; }
+      document.documentElement.classList.add("no-anim");
+    })();
+  </script>
+  <link rel="icon" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=24">
+</head>
+<body>
+<a class="skip" href="#main">پرش به محتوا</a>
+
+<!-- نوار بالا -->
+<div class="topbar">
+  <div class="container topbar__in">
+    <a href="#" class="lang" id="langToggle">En Version</a>
+    <div class="socials">
+      <a href="#" aria-label="تلگرام">TG</a>
+      <a href="#" aria-label="لینکدین">in</a>
+      <a href="#" aria-label="ایکس">X</a>
+      <a href="#" aria-label="اینستاگرام">IG</a>
+      <a href="#" aria-label="آپارات">AP</a>
+    </div>
+  </div>
+</div>
+
+<!-- هدر -->
+<header class="header" id="header">
+  <div class="container header__in">
+    <a href="index.html" class="logo"><img src="images/logo.png" alt="لوگو"><span>اندیشکده کیمیا</span></a>
+    <nav class="nav" id="nav">
+      <button class="nav__close" id="navClose" aria-label="بستن">✕</button>
+      <ul>
+        <li><a href="index.html">خانه</a></li>
+        <li class="has-sub"><a href="index.html#axes">محورها</a><span class="chev">⌄</span>
+          <ul class="sub mega">
+            <li><a href="cores.html?c=pv-system"><img src="images/g1.svg" alt="">تحلیل نهادی نظام فارماکوویژیلانس</a></li>
+            <li><a href="cores.html?c=adr-reporting"><img src="images/g2.svg" alt="">کمبود احصا و گزارش عوارض دارویی</a></li>
+            <li><a href="cores.html?c=diyat"><img src="images/g3.svg" alt="">هوشمندسازی محاسبه دیات مقدر</a></li>
+            <li><a href="cores.html?c=darooyari"><img src="images/g4.svg" alt="">دارویاری</a></li>
+            <li><a href="cores.html?c=experience"><img src="images/g5.svg" alt="">تجربه‌نگاری سیاست‌های فرآورده‌های سلامت</a></li>
+            <li><a href="cores.html?c=offline"><img src="images/g6.svg" alt="">تداوم خدمات دارویی در ناپایداری اینترنت</a></li>
+            <li><a href="cores.html?c=shortage"><img src="images/g7.svg" alt="">بررسی علل کمبود دارویی</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#events">رویدادها</a></li>
+        <li><a href="index.html#achievements">دستاوردها</a></li>
+        <li><a href="index.html#publications">انتشارات</a></li>
+        <li class="has-sub"><a href="about.html">درباره ما</a><span class="chev">⌄</span>
+          <ul class="sub">
+            <li><a href="about.html#about">معرفی</a></li>
+            <li><a href="about.html#approach">رویکرد و روش کار</a></li>
+          </ul>
+        </li>
+        <li><a href="#footer">ارتباط با ما</a></li>
+      </ul>
+    </nav>
+    <div class="header__actions">
+      <button class="icon-btn" id="searchOpen" aria-label="جستجو">⌕</button>
+      <button class="icon-btn menu-btn" id="navOpen" aria-label="منو">☰</button>
+    </div>
+  </div>
+</header>
+<div class="overlay" id="overlay"></div>
+
+<!-- جستجو -->
+<div class="search" id="search">
+  <button class="search__close" id="searchClose" aria-label="بستن">✕</button>
+  <h3>جستجو در سایت</h3>
+  <form class="search__form" onsubmit="return false">
+    <input type="search" placeholder="عبارت مورد نظر را بنویسید...">
+    <button>⌕</button>
+  </form>
+</div>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <a class="back-link" id="pubBack" href="index.html#publications"></a>
+      <span class="page-hero__kind" id="pubPageKind"></span>
+      <h1 id="pubPageTitle"></h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container pub-page" id="pubPage"></div>
+  </section>
+</main>
+
+<!-- فوتر -->
+<footer class="footer" id="footer">
+  <div class="container footer__grid">
+    <div>
+      <img src="images/logo-white.png" alt="" class="footer__logo">
+      <p>اندیشکده کیمیا؛ مجموعه‌ای مسئله‌محور برای حل چالش‌های حوزه دارو و فرآورده‌های سلامت.</p>
+    </div>
+    <div>
+      <h4>لینک‌های مهم</h4>
+      <ul class="partner-links">
+        <li><a href="https://www.fda.gov.ir" target="_blank" rel="noopener">سازمان غذا و دارو</a></li>
+        <li><a href="https://behdasht.gov.ir" target="_blank" rel="noopener">وزارت بهداشت، درمان و آموزش پزشکی</a></li>
+        <li><a href="https://www.eadl.ir" target="_blank" rel="noopener">قوه قضاییه</a></li>
+        <li><a href="https://www.lmo.ir" target="_blank" rel="noopener">سازمان پزشکی قانونی</a></li>
+        <li><a href="https://ihio.gov.ir" target="_blank" rel="noopener">سازمان بیمه سلامت ایران</a></li>
+        <li><a href="https://www.tamin.ir" target="_blank" rel="noopener">سازمان تأمین اجتماعی</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>تماس با ما</h4>
+      <ul class="contact">
+        <li><span class="contact__label">تلفن:</span> <a href="tel:+982100000000" dir="ltr">۰۲۱-۰۰۰۰۰۰۰۰</a></li>
+        <li><span class="contact__label">پست الکترونیک:</span> <a href="mailto:kimiathinktank@gmail.com" dir="ltr">kimiathinktank@gmail.com</a></li>
+        <li><span class="contact__label">آدرس:</span> <span>تهران، چهارراه ولیعصر، خیابان برادران مظفر، کوچه بخشنده، پلاک ۵</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> تمامی حقوق محفوظ است.</div>
+</footer>
+
+<!-- پنجره خلاصه گزارش (بخش انتشارات) -->
+<dialog class="pub-dialog" id="pubDialog" aria-labelledby="pubTitle">
+  <div class="pub-dialog__in">
+    <button class="pub-dialog__close" id="pubClose" aria-label="بستن">✕</button>
+    <div class="pub-dialog__cover"><img id="pubCover" alt=""></div>
+    <div class="pub-dialog__text">
+      <span class="pub-dialog__kind" id="pubKind"></span>
+      <h3 id="pubTitle"></h3>
+      <h4 id="pubSumHead"></h4>
+      <div class="pub-dialog__body" id="pubBody"></div>
+    </div>
+  </div>
+</dialog>
+
+<script src="js/i18n.js?v=24"></script>
+<script src="js/main.js?v=24"></script>
+</body>
+</html>
