@@ -160,16 +160,6 @@ const DATA = {
       ["سازمان پزشکی قانونی", "پیگیری استقرار سامانه هوشمند محاسبه دیه."],
       ["سازمان‌های بیمه‌گر", "داده‌های پرداخت از جیب و طراحی فرآیند تسویه بیمه‌ای آفلاین."]
     ],
-    opinions: [
-      ["۱۴۰۵/۰۸/۱۵", "چرا مردم و کادر درمان عوارض دارویی را گزارش نمی‌کنند؟"],
-      ["۱۴۰۵/۰۸/۱۰", "دارویاری؛ آنچه داده‌ها درباره حذف ارز ترجیحی می‌گویند"],
-      ["۱۴۰۵/۰۸/۰۴", "داروخانه بدون اینترنت؛ درس‌های جنگ ۱۲ روزه"],
-      ["۱۴۰۵/۰۷/۲۸", "انحصار در بازار انسولین قلمی"],
-      ["۱۴۰۵/۰۷/۲۰", "هوش مصنوعی در خدمت عدالت؛ محاسبه هوشمند دیه"],
-      ["۱۴۰۵/۰۷/۱۲", "ضرورت متولی واحد فارماکوویژیلانس"],
-      ["۱۴۰۵/۰۷/۰۵", "چرا باید سیاست‌ها را تجربه‌نگاری کرد؟"],
-      ["۱۴۰۵/۰۶/۲۹", "از کووید-۱۹ تا امروز؛ خلأهای نظام دارویی"]
-    ],
     media: [
       ["پادکست", "پادکست کیمیا: فارماکوویژیلانس به زبان ساده"],
       ["ویدئو", "معرفی سامانه هوشمند محاسبه دیه"],
@@ -202,16 +192,6 @@ const DATA = {
       ["Legal Medicine Organization", "Deploying the smart diya calculation system."],
       ["Health Insurers", "Out-of-pocket data and the design of offline insurance settlement."]
     ],
-    opinions: [
-      ["Nov 6, 2026", "Why don't patients and clinicians report adverse drug reactions?"],
-      ["Nov 1, 2026", "Darooyari: what the data say about removing the subsidised exchange rate"],
-      ["Oct 26, 2026", "Pharmacies without internet: lessons from the 12-day war"],
-      ["Oct 20, 2026", "Monopoly in the insulin pen market"],
-      ["Oct 12, 2026", "AI for justice: smart diya calculation"],
-      ["Oct 4, 2026", "Why pharmacovigilance needs a single lead body"],
-      ["Sep 27, 2026", "Why document policy experience?"],
-      ["Sep 20, 2026", "From COVID-19 to today: gaps in the pharmaceutical system"]
-    ],
     media: [
       ["Podcast", "Kimia Podcast: Pharmacovigilance Made Simple"],
       ["Video", "Introducing the smart diya calculation system"],
@@ -220,6 +200,105 @@ const DATA = {
       ["Video", "Conversation with the policy documentation core"]
     ]
   }
+};
+
+// =====================================================================
+//  انتشارات (صفحه اصلی، بخش «انتشارات»)
+//  هر گزارش: کاور (images/publications) + عنوان + متن خلاصه/مقدمه (هر پاراگراف یک رشته) + پانویس‌ها
+//  برای افزودن گزارش جدید، یک مورد دیگر به هر دو زبان اضافه کنید.
+// =====================================================================
+const PUB_UI = {
+  fa: { kind: "گزارش پژوهشی", read: "مطالعه خلاصه گزارش", summary: "خلاصه و مقدمه گزارش", close: "بستن", notes: "پانویس" },
+  en: { kind: "Research Report", read: "Read the summary", summary: "Summary & Introduction", close: "Close", notes: "Notes" }
+};
+
+const PUBLICATIONS = {
+  fa: [
+    {
+      id: "diyat-database", cover: "cover-1.jpg",
+      title: "پایگاه داده هوشمندسازی محاسبه دیات مقدر",
+      paras: [
+        "نظام حقوقی در ایران بر مبنای فقه اسلامی بنا شده و توسعه یافته است. این نظام، شامل بخش‌های متعددی بوده که یکی از این بخش‌ها، قانون مجازات اسلامی است. قانون مجازات اسلامی مشتمل بر جرایم و مجازات‌های حدود، قصاص، دیات و تعزیرات، اقدامات تأمینی و تربیتی، شرایط و موانع مسؤولیت کیفری و قواعد حاکم بر آن‌ها است. کتاب چهارم قانون مجازات مرتبط با موضوع دیات است و شامل مجموعه‌ای کامل از قواعدی است که برای آسیب‌های مختلف، دیات متناسبی را تعیین کرده است. دیات تعیین شده در قانون، بر دو نوع هستند. دیات مقدر و غیرمقدر (ارش):",
+        "دیه مقدر، مال معینی است که در شرع مقدس به سبب جنایت غیر عمدی یا عمدی در مواردی که به هر جهتی قصاص ندارد، مقرر شده است.<sup>۱</sup>",
+        "ارش، دیه غیر مقدر است که میزان آن در شرع تعیین نشده است و توسط کارشناسان ذی‌صلاح پزشکی و قضایی متناسب با آسیب وارده به مجنی‌علیه تعیین می‌شود.<sup>۲</sup>",
+        "تعیین و تشخیص آسیب و محاسبه دیه مرتبط با آن پیچیدگی‌هایی دارد که به سبب آن، علی‌رغم تعیین قواعد دیات در قانون، گاهی در عمل شاهد تفاوت در ارزیابی و تطبیق آسیب با قانون در میان قضات و کارشناسان پزشکی قانونی هستیم. برخی از موارد دیه به دلیل شرایط خاص یا پیچیدگی‌های فقهی و پزشکی، در مقام اجرا با برداشت‌های مختلف همراه بوده و همین امر باعث صدور آرای متفاوت در موارد مشابه شده است. روند تعیین دیه نیازمند تطبیق آسیب با مواد متعدد قانونی است که این فرآیند زمان‌بر، مستعد خطا و وابسته به تفسیر شخصی است.",
+        "توسعه یک سامانه یکپارچه که تحلیل، تطبیق و محاسبه دیه را بر اساس قوانین انجام دهد، می‌تواند تحولی بزرگ در کاهش اختلافات و افزایش دقت و سرعت در روند دادرسی ایجاد کند. مسئله‌ای که موضوع <b>راهکار ۲۰ سند تحول و تعالی قوه قضائیه</b> نیز می‌باشد. بر اساس این سند، هوشمندسازی محاسبه دیات برای هر دو نوع دیات مقدر و غیرمقدر (ارش) ضروری و لازم‌الاجرا است.",
+        "از این رو کارشناسان این مرکز به منظور کمک به سازمان پزشکی قانونی و فراهم کردن بستر هوشمندسازی محاسبه دیات، پروژه تولید پایگاه داده هوشمندسازی محاسبه دیات مقدر را آغاز کردند."
+      ],
+      notes: ["ماده ۴۴۸ قانون مجازات اسلامی (مصوب ۱۳۹۲)", "ماده ۴۴۹ قانون مجازات اسلامی (مصوب ۱۳۹۲)"]
+    },
+    {
+      id: "covid-supply", cover: "cover-2.jpg",
+      title: "بررسی تامین اقلام دارویی حوزه کووید-۱۹ با رویکرد آینده‌پژوهی",
+      paras: [
+        "موضوع تامین اقلام دارویی از مهم‌ترین موضوعات در مدیریت یک پاندمی و دارای ابعاد متعددی اعم از اثربخشی، مصرف و تجویز منطقی و تامین می‌باشد. این گزارش در چند بخش به بررسی اثربخشی، مصرف و تامین اقلام کووید-۱۹ می‌پردازد.",
+        "در بخش ابتدایی، پرمصرف‌ترین داروها در پاندمی کرونا به کمک یک پرسشنامه احصاء شد. سپس با دستورالعمل‌های درمانی معتبر مقایسه گردید. در نهایت نیز اثربخشی برخی از آن‌ها در مقالات مرور شد. در این پرسشنامه از پزشکان، داروسازان و پرستاران خواسته شده تا پرمصرف‌ترین داروها را به ترتیب وارد کرده و به تواتر آن‌ها نمره دهند. در گام بعدی، این داروها با در نظر گرفتن رویکرد توأمان تامین و جایگاه بالینی دسته‌بندی شدند.",
+        "در بخش بعدی، مصرف داروی رمدسیویر به عنوان یکی از پرمصرف‌ترین داروها در تابستان ۱۴۰۰ مورد بررسی قرار گرفت. در این بخش میزان داروی مورد نیاز و تامین شده مقایسه گردید و نقش تجویز منطقی در تامین دارو مورد بحث قرار گرفت. همچنین در نهایت مبلغ هزینه شده برای مصرف رمدسیویر خارج از دستورالعمل رسمی کشوری محاسبه شده است.",
+        "با توجه به رویکرد آینده‌پژوهانه گزارش، دو مورد از داروهای نوظهور که می‌توانند کاندید ورود به فهرست رسمی داروهای ایران باشند، مورد بررسی قرار گرفتند. مولنوپیراویر و نیرماترلویر/ریتوناویر (پکسلووید) از مطرح‌ترین داروهای جدید در حوزه درمان کووید-۱۹ هستند که تاییدیه مصرف اضطراری از FDA آمریکا دریافت کرده‌اند. در این گزارش، هر دو سناریوی واردات و تولید داخلی برای این دو دارو بررسی و قیمت احتمالی، میزان مورد نیاز و بار مالی ناشی از آن محاسبه شد.",
+        "در نهایت پیشنهاداتی برای تامین آینده‌نگر دارو ارائه شد که می‌تواند اتلاف هزینه را کاهش داده و آسیب‌های ناشی از کمبود دارو را به حداقل برساند. یکی از این پیشنهادها، استفاده از مطالعات اپیدمیولوژی در بحث تامین دارو می‌باشد که در این گزارش مورد استفاده و سنجش قرار گرفته است."
+      ]
+    },
+    {
+      id: "paxlovid", cover: "cover-3.jpg",
+      title: "بررسی کاربرد، اثربخشی و هزینه تامین داروهای کاندید ورود به فهرست دارویی کشور: پکسلووید",
+      paras: [
+        "کووید-۱۹ یک بیماری تنفسی مسری است که توسط ویروس SARS-CoV-2 ایجاد می‌شود. این بیماری از آذر سال ۱۳۹۸ شیوع پیدا کرد و تا ۱۰ خرداد ۱۴۰۱ بیش از ۵۳۲ میلیون مورد مبتلا در جهان گزارش شده است که بالغ بر ۶ میلیون نفر از آنان جان خود را از دست داده‌اند. باتوجه به گستردگی و تداوم همه‌گیری کرونا، تحقیقات برای یافتن داروهای موثر در این حوزه همچنان ادامه دارد. در حال حاضر شرکت‌های داروسازی بزرگ فراورده‌های جدیدی در این حوزه به جهان معرفی کرده‌اند. این داروها طیف مختلفی از هزینه و اثربخشی دارند و همگی می‌توانند کاندیدهای بالقوه ورود به فهرست رسمی داروهای ایران باشند. آگاهی سیاست‌گذاران به داروهای جدید پیش از ورود به فهرست، کمک شایانی به برنامه‌ریزی تامین آن‌ها می‌کند. از این رو رصد آن‌ها مهم است. در این گزارش، داروی <b>نیرماترلویر/ریتوناویر (پکسلووید)</b> به عنوان یکی از مهم‌ترین داروهای نوظهور که کاندید ورود به فهرست رسمی داروهای ایران است مورد بررسی قرار گرفته است.",
+        "<b>پکسلووید</b> ترکیبی از نیرماترلویر و ریتوناویر است. نیرماترلویر ماده موثره اصلی دارو و یک مهارکننده پروتئاز ویروس کرونا است. ریتوناویر مهارکننده پروتئاز HIV بوده که به علت مهار سیتوکروم P450 3A4 همراه نیرماترلویر استفاده می‌شود تا مدت اثر دارو را افزایش دهد. پکسلووید به صورت سه قرص، هر ۱۲ ساعت و به مدت پنج روز استفاده می‌شود (مجموعاً ۳۰ عدد). در هر وعده ۲ عدد قرص نیرماترلویر (معادل ۳۰۰ میلی‌گرم) و یک عدد قرص ریتوناویر (معادل ۱۰۰ میلی‌گرم) مصرف می‌شود. این دارو در تاریخ ۱ دی‌ماه ۱۴۰۰، مجوز مصرف اضطراری از سازمان غذا و داروی آمریکا را دریافت کرده است. فایزر با امضای قراردادی با MPP، اجازه تولید نسخه ارزان‌قیمت دارو در ۳۶ شرکت ژنریک‌ساز را صادر کرده است تا در اختیار ۹۵ کشور با درآمد کم و متوسط قرار گیرد. کاربرد اصلی پکسلووید در حال حاضر در اوایل دوره بیماری و به منظور جلوگیری از پیشرفت و بستری شدن فرد می‌باشد. بیماران با تست مثبت کرونا (با حداقل سن ۱۲ سال و وزن ۴۰ کیلوگرم) که احتمال پیشرفت بیماری در آن‌ها بالاست مجاز به مصرف پکسلووید هستند. این دارو باید حداکثر تا ۵ روز پس از شروع علایم مصرف شود.",
+        "اخیراً گزارش‌هایی دال بر کارایی پکسلووید در درمان کووید طولانی داده شده است که توجهات زیادی را به سمت خود جلب نموده است. با این وجود دانشمندان اعلام می‌کنند که این موارد مدرک مناسبی جهت اثبات اثربخشی پکسلووید بر تسکین کرونای طولانی نیست و تحقیقات بیشتری باید صورت پذیرد."
+      ]
+    },
+    {
+      id: "molnupiravir", cover: "cover-4.jpg",
+      title: "بررسی کاربرد، اثربخشی و هزینه تامین داروهای کاندید ورود به فهرست دارویی کشور: مولنوپیراویر",
+      paras: [
+        "کووید-۱۹ یک بیماری تنفسی مسری است که توسط ویروس SARS-CoV-2 ایجاد می‌شود. این بیماری از آذر سال ۱۳۹۸ شیوع پیدا کرد و تا ۱۰ خرداد ۱۴۰۱ بیش از ۵۳۲ میلیون مورد مبتلا در جهان گزارش شده است که بالغ بر ۶ میلیون نفر از آنان جان خود را از دست داده‌اند. باتوجه به گستردگی و تداوم همه‌گیری کرونا، تحقیقات برای یافتن داروهای موثر در این حوزه همچنان ادامه دارد. در حال حاضر شرکت‌های داروسازی بزرگ فراورده‌های جدیدی در این حوزه به جهان معرفی کرده‌اند. این داروها طیف مختلفی از هزینه و اثربخشی دارند و همگی می‌توانند کاندیدهای بالقوه ورود به فهرست رسمی داروهای ایران باشند. آگاهی سیاست‌گذاران به داروهای جدید پیش از ورود به فهرست، کمک شایانی به برنامه‌ریزی تامین آن‌ها می‌کند. از این رو رصد آن‌ها مهم است. در این گزارش، داروی <b>مولنوپیراویر</b> به عنوان یکی از مهم‌ترین داروهای نوظهور که کاندید ورود به فهرست رسمی داروهای ایران است مورد بررسی قرار گرفته است.",
+        "<b>مولنوپیراویر (Molnupiravir)</b> یک آنالوگ نوکلئوزیدی بوده و به صورت کپسول‌های خوراکی ۲۰۰ میلی‌گرمی در دسترس قرار گرفته است. این دارو با نام تجاری Lagevrio توسط شرکت مرک تولید و در تاریخ ۲ دی‌ماه ۱۴۰۰، مجوز مصرف اضطراری از سازمان غذا و داروی آمریکا را دریافت کرده است. مرک با امضای قراردادی با یک موسسه غیرانتفاعی وابسته به سازمان ملل متحد، اجازه تولید نسخه ارزان‌قیمت دارو در ۲۷ شرکت ژنریک‌ساز را صادر کرده است تا در اختیار ۱۰۵ کشور با درآمد کم و متوسط قرار گیرد. مولنوپیراویر در افراد پرخطر و در اوایل دوره بیماری تجویز می‌شود و دوز مصرفی آن ۴ کپسول، هر ۱۲ ساعت، به مدت پنج روز (مجموعاً ۴۰ عدد) است. مطابق نظر NIH مولنوپیراویر در صورتی استفاده می‌شود که سایر گزینه‌های درمان (نیرماترلویر/ریتوناویر، رمدسیویر، Bebtelovimab) در دسترس نباشند."
+      ]
+    }
+  ],
+  en: [
+    {
+      id: "diyat-database", cover: "cover-1.jpg",
+      title: "A Database for Smart Calculation of Statutory Diya",
+      paras: [
+        "Iran's legal system is built on and developed from Islamic jurisprudence. One of its many parts is the Islamic Penal Code, which covers hudud, qisas, diya and ta'zir offences and punishments, security and corrective measures, the conditions for and barriers to criminal liability, and the rules governing them. Book Four of the Penal Code concerns diya (statutory compensation for bodily harm) and sets out a complete body of rules assigning appropriate compensation to different injuries. Diya under the law is of two kinds: statutory (muqaddar) and non-statutory (arsh):",
+        "Statutory diya is a fixed amount set by Islamic law for intentional or unintentional harm in cases where, for whatever reason, retribution (qisas) does not apply.<sup>1</sup>",
+        "Arsh is non-statutory diya, whose amount is not fixed by Islamic law and is determined by qualified medical and judicial experts in proportion to the harm suffered by the victim.<sup>2</sup>",
+        "Identifying and assessing injuries and calculating the corresponding diya is complex. As a result, even though the rules are set out in law, judges and forensic medical experts sometimes assess injuries and match them to the law differently in practice. Some cases, because of special circumstances or jurisprudential and medical complexities, are interpreted differently when applied, leading to different rulings in similar cases. Determining diya requires matching an injury against many legal provisions — a process that is slow, error-prone and dependent on personal interpretation.",
+        "An integrated system that analyses, matches and calculates diya according to the law could greatly reduce disputes and improve the accuracy and speed of proceedings. This is also the subject of <b>Solution 20 of the Judiciary's Transformation and Excellence Document</b>, under which smart calculation of both statutory and non-statutory (arsh) diya is necessary and mandatory.",
+        "Accordingly, the centre's experts launched a project to build a database for the smart calculation of statutory diya, to support the Legal Medicine Organization and lay the groundwork for automating diya calculation."
+      ],
+      notes: ["Article 448, Islamic Penal Code (approved 2013)", "Article 449, Islamic Penal Code (approved 2013)"]
+    },
+    {
+      id: "covid-supply", cover: "cover-2.jpg",
+      title: "Supplying COVID-19 Medicines: A Foresight Study",
+      paras: [
+        "Supplying medicines is one of the most important issues in managing a pandemic, with many dimensions including effectiveness, consumption, rational prescribing and supply. This report examines the effectiveness, consumption and supply of COVID-19 medicines in several parts.",
+        "First, the most widely used medicines during the pandemic were identified through a questionnaire, then compared with authoritative treatment guidelines, and finally the effectiveness of some of them was reviewed in the literature. The questionnaire asked physicians, pharmacists and nurses to list the most used medicines in order and score how frequently they were used. Next, these medicines were categorised by both supply considerations and clinical role.",
+        "The next part examined consumption of remdesivir, one of the most used medicines in summer 2021. It compared the amount needed with the amount supplied, discussed the role of rational prescribing in drug supply, and calculated the money spent on remdesivir used outside the official national guideline.",
+        "Given the report's foresight approach, two emerging medicines that could become candidates for Iran's official drug list were examined. Molnupiravir and nirmatrelvir/ritonavir (Paxlovid) are among the most prominent new COVID-19 treatments to have received emergency use authorisation from the US FDA. For both medicines the report examined import and local-production scenarios and estimated the likely price, the quantity needed and the resulting financial burden.",
+        "Finally, it proposed measures for forward-looking drug supply that could reduce wasted spending and minimise the harm caused by shortages. One of these — using epidemiological studies in drug supply planning — was applied and tested in this report."
+      ]
+    },
+    {
+      id: "paxlovid", cover: "cover-3.jpg",
+      title: "Use, Effectiveness and Supply Cost of Candidate Drugs for Iran's National Drug List: Paxlovid",
+      paras: [
+        "COVID-19 is a contagious respiratory disease caused by the SARS-CoV-2 virus. It began spreading in December 2019, and by 31 May 2022 more than 532 million cases had been reported worldwide, with over 6 million deaths. Given the scale and persistence of the pandemic, research into effective medicines continues. Major pharmaceutical companies have introduced new products, with a wide range of costs and effectiveness, all of which are potential candidates for Iran's official drug list. Policymakers' awareness of new medicines before they enter the list greatly helps supply planning, which makes monitoring them important. This report examines <b>nirmatrelvir/ritonavir (Paxlovid)</b>, one of the most important emerging medicines that is a candidate for Iran's official drug list.",
+        "<b>Paxlovid</b> combines nirmatrelvir and ritonavir. Nirmatrelvir is the main active ingredient and inhibits the coronavirus protease. Ritonavir, an HIV protease inhibitor, is given with nirmatrelvir because it inhibits cytochrome P450 3A4, prolonging the drug's effect. Paxlovid is taken as three tablets every 12 hours for five days (30 tablets in total): two nirmatrelvir tablets (300 mg) and one ritonavir tablet (100 mg) per dose. It received emergency use authorisation from the US FDA on 22 December 2021. Under an agreement with the MPP, Pfizer has licensed 36 generic manufacturers to produce low-cost versions for 95 low- and middle-income countries. Paxlovid is currently used early in the illness to prevent progression and hospitalisation. Patients with a positive COVID test (aged at least 12 and weighing at least 40 kg) who are at high risk of progression are eligible. It must be started within 5 days of symptom onset.",
+        "Recent reports suggesting that Paxlovid is effective against long COVID have attracted wide attention. However, scientists say these reports are not adequate evidence that Paxlovid relieves long COVID, and more research is needed."
+      ]
+    },
+    {
+      id: "molnupiravir", cover: "cover-4.jpg",
+      title: "Use, Effectiveness and Supply Cost of Candidate Drugs for Iran's National Drug List: Molnupiravir",
+      paras: [
+        "COVID-19 is a contagious respiratory disease caused by the SARS-CoV-2 virus. It began spreading in December 2019, and by 31 May 2022 more than 532 million cases had been reported worldwide, with over 6 million deaths. Given the scale and persistence of the pandemic, research into effective medicines continues. Major pharmaceutical companies have introduced new products, with a wide range of costs and effectiveness, all of which are potential candidates for Iran's official drug list. Policymakers' awareness of new medicines before they enter the list greatly helps supply planning, which makes monitoring them important. This report examines <b>molnupiravir</b>, one of the most important emerging medicines that is a candidate for Iran's official drug list.",
+        "<b>Molnupiravir</b> is a nucleoside analogue available as 200 mg oral capsules. It is made by Merck under the brand name Lagevrio and received emergency use authorisation from the US FDA on 23 December 2021. Through an agreement with a UN-affiliated non-profit, Merck has licensed 27 generic manufacturers to produce low-cost versions for 105 low- and middle-income countries. Molnupiravir is prescribed for high-risk patients early in the illness, at a dose of 4 capsules every 12 hours for five days (40 capsules in total). According to the NIH, it is used when other treatment options (nirmatrelvir/ritonavir, remdesivir, bebtelovimab) are not available."
+      ]
+    }
+  ]
 };
 
 // لوگوی نهادهای همکار؛ به همان ترتیب کارت‌های «همکاری‌های نهادی» (فایل‌ها در images/partners)

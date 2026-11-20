@@ -17,7 +17,7 @@
   <link rel="icon" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=21">
+  <link rel="stylesheet" href="css/style.css?v=22">
 </head>
 <body>
 <a class="skip" href="#main">پرش به محتوا</a>
@@ -94,7 +94,7 @@
         <p>مجموعه‌ای نخبگانی از کارگروه‌های تخصصی با رویکرد مسئله‌محور برای حل چالش‌های استراتژیک نظام سلامت کشور، با تمرکز بر حوزه دارو و فرآورده‌های سلامت.</p>
         <div class="hero__btns"><a href="about.html" class="btn btn--primary">درباره اندیشکده</a></div>
       </div>
-      <img class="hero__img reveal" src="images/hero.svg?v=21" alt="">
+      <img class="hero__img reveal" src="images/hero.svg?v=22" alt="">
     </div>
   </section>
 
@@ -127,8 +127,8 @@
   <!-- انتشارات -->
   <section class="section section--alt" id="publications">
     <div class="container">
-      <div class="section__head"><h2>انتشارات</h2><a href="#">آرشیو</a></div>
-      <div class="square-grid" id="opinions"></div>
+      <div class="section__head"><h2>انتشارات</h2></div>
+      <div class="pub-grid" id="pubGrid"></div>
     </div>
   </section>
 
@@ -184,7 +184,21 @@
   <div class="copy">© <span id="year"></span> تمامی حقوق محفوظ است.</div>
 </footer>
 
-<script src="js/i18n.js?v=21"></script>
-<script src="js/main.js?v=21"></script>
+<!-- پنجره خلاصه گزارش (بخش انتشارات) -->
+<dialog class="pub-dialog" id="pubDialog" aria-labelledby="pubTitle">
+  <div class="pub-dialog__in">
+    <button class="pub-dialog__close" id="pubClose" aria-label="بستن">✕</button>
+    <div class="pub-dialog__cover"><img id="pubCover" alt=""></div>
+    <div class="pub-dialog__text">
+      <span class="pub-dialog__kind" id="pubKind"></span>
+      <h3 id="pubTitle"></h3>
+      <h4 id="pubSumHead"></h4>
+      <div class="pub-dialog__body" id="pubBody"></div>
+    </div>
+  </div>
+</dialog>
+
+<script src="js/i18n.js?v=22"></script>
+<script src="js/main.js?v=22"></script>
 </body>
 </html>

@@ -67,14 +67,7 @@ function renderCards() {
     observe(grid);
   });
 
-  if ($("opinions")) {
-    $("opinions").innerHTML = D.opinions.map(([d, t], i) => `
-      <a href="#" class="sq reveal">
-        <img src="${img(i)}" alt="" loading="lazy">
-        <div class="sq__cap"><small>${d}</small><h3>${t}</h3></div>
-      </a>`).join("");
-    observe($("opinions"));
-  }
+  renderPubs();
 
   if (slider) {
     slider.innerHTML = D.media.map(([tag, t], i) => `
@@ -87,6 +80,66 @@ function renderCards() {
 }
 
 // ---------- صفحه هسته‌های پژوهشی ----------
+// ---------- انتشارات: کارت گزارش‌ها (کاور + عنوان) و پنجره خلاصه هر گزارش ----------
+const COVER_V = 1; // اگر کاورها عوض شدند، این عدد را یکی بالا ببرید
+function renderPubs() {
+  const grid = $("pubGrid");
+  if (!grid) return;
+  const U = PUB_UI[lang];
+  grid.innerHTML = PUBLICATIONS[lang].map(p => `
+    <a class="pub reveal" href="#pub-${p.id}" data-pub="${p.id}">
+      <span class="pub__cover"><img src="images/publications/${p.cover}?v=${COVER_V}" alt="${p.title}" loading="lazy"></span>
+      <span class="pub__kind">${U.kind}</span>
+      <span class="pub__title">${p.title}</span>
+      <span class="pub__read">${U.read} »</span>
+    </a>`).join("");
+  grid.querySelectorAll("[data-pub]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    openPub(a.dataset.pub);
+  }));
+  observe(grid);
+  // اگر پنجره‌ای باز است (مثلاً هنگام تغییر زبان)، متنش را به‌روز کن
+  const dlg = $("pubDialog");
+  if (dlg?.open && dlg.dataset.pub) fillPub(dlg.dataset.pub);
+}
+
+function fillPub(id) {
+  const p = PUBLICATIONS[lang].find(x => x.id === id);
+  if (!p) return false;
+  const U = PUB_UI[lang];
+  const dlg = $("pubDialog");
+  dlg.dataset.pub = id;
+  $("pubCover").src = `images/publications/${p.cover}?v=${COVER_V}`;
+  $("pubCover").alt = p.title;
+  $("pubKind").textContent = U.kind;
+  $("pubTitle").textContent = p.title;
+  $("pubSumHead").textContent = U.summary;
+  $("pubBody").innerHTML = p.paras.map(t => `<p>${t}</p>`).join("") +
+    (p.notes ? `<div class="pub-notes"><b>${U.notes}</b><ol>${p.notes.map(n => `<li>${n}</li>`).join("")}</ol></div>` : "");
+  $("pubClose").setAttribute("aria-label", U.close);
+  return true;
+}
+
+function openPub(id) {
+  const dlg = $("pubDialog");
+  if (!dlg || !fillPub(id)) return;
+  if (!dlg.open) dlg.showModal();
+  dlg.querySelector(".pub-dialog__text").scrollTop = 0;
+  dlg.querySelector(".pub-dialog__in").scrollTop = 0;
+  history.replaceState(null, "", location.pathname + location.search + "#pub-" + id);
+}
+
+(function setupPubDialog() {
+  const dlg = $("pubDialog");
+  if (!dlg) return;
+  const close = () => dlg.close();
+  $("pubClose").addEventListener("click", close);
+  dlg.addEventListener("click", e => { if (e.target === dlg) close(); }); // کلیک بیرون از کادر
+  dlg.addEventListener("close", () => {
+    if (location.hash.startsWith("#pub-")) history.replaceState(null, "", location.pathname + location.search + "#publications");
+  });
+})();
+
 // ---------- صفحه اصلی: «محورها» (آیکون هر هسته، با لینک به صفحه همان هسته) ----------
 function renderAxes() {
   const grid = $("axesGrid");
@@ -138,6 +191,12 @@ function renderCores() {
 }
 
 function scrollToHash() {
+  // لینک مستقیم به یک گزارش (#pub-<id>): رفتن به بخش انتشارات و باز کردن پنجره همان گزارش
+  if (location.hash.startsWith("#pub-")) {
+    $("publications")?.scrollIntoView();
+    openPub(location.hash.slice(5));
+    return;
+  }
   const t = location.hash && document.querySelector(location.hash);
   if (t) t.scrollIntoView();
 }
@@ -148,7 +207,7 @@ const SKIP = new Set(["SCRIPT", "STYLE"]);
 const textNodes = [];
 const attrNodes = [];
 (function collect() {
-  const dynamic = "[data-cards], #opinions, #slider, #coresList, #coreTabs, #axesGrid";
+  const dynamic = "[data-cards], #pubGrid, #pubDialog, #slider, #coresList, #coreTabs, #axesGrid";
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const n = walker.currentNode;
